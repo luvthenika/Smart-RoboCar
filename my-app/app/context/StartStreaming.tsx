@@ -29,10 +29,6 @@ export const StreamProvider = ({ children }: { children: ReactNode }) => {
             const rawData = event.data;
             const base64data = Buffer.from(rawData).toString('base64');
             setFrameUrl(`data:image/jpeg;base64,${base64data}`);
-
-            console.log("Кадр успішно оброблено, розмір:", rawData.byteLength);
-
-
         };
 
         ws.onclose = () => {

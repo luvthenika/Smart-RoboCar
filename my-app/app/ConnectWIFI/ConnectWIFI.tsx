@@ -5,6 +5,7 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useRouter } from "expo-router";
 import { StreamContext } from "../context/StartStreaming";
+import { usePressableImage } from "../hooks/usePressableImage";
 
 export default function ConnectWIFI() {
     const connectButtonImageIdle = require("../../assets/images/connect_idle.svg");
@@ -13,24 +14,22 @@ export default function ConnectWIFI() {
     const quitButtonImagePressed = require("../../assets/images/quit_pressed.svg");
     const robotHeadImage = require("../../assets/images/robot_head.png");
 
-    const [connectButtonPressed, setConnectButtonPressed] = useState(false);
-    const [quitButtonPressed, setQuitButtonPressed] = useState(false);
     const [wifiConnecting, setWifiConnecting] = useState(false);
 
     const [connectingText, setConnectingText] = useState("Connect to Wi-Fi");
     const router = useRouter();
     const { connect, disconnect } = useContext(StreamContext);
 
+    const connectButton = usePressableImage(connectButtonImageIdle, connectBuutonImagePressed);
+    const quitButton = usePressableImage(quitButtonImageIdle, quitButtonImagePressed);
+
     const handleStart = () => {
-        setConnectButtonPressed(true);
         setWifiConnecting(true);
-        setQuitButtonPressed(false);
-        router.push('/ConnectCamera/ConnectCamera')
+        router.push('/PreviewCamera/PreviewCamera');
         connect();
     };
+
     const handleQuit = () => {
-        setQuitButtonPressed((quitButtonPressed) => !quitButtonPressed);
-        setConnectButtonPressed(false);
         setWifiConnecting(false);
         disconnect();
     };
@@ -38,6 +37,7 @@ export default function ConnectWIFI() {
     const [loaded, error] = useFonts({
         PixelifySans: require("../../assets/fonts/Pixelify_Sans/static/PixelifySans-Regular.ttf"),
     });
+
     const connectionStringText = ["Connecting.", "Connecting..", "Connecting...", "Connecting....", "Connecting....."];
 
     useEffect(() => {
@@ -63,6 +63,7 @@ export default function ConnectWIFI() {
     if (!loaded && !error) {
         return null;
     }
+
     return (
         <View style={styles.container}>
             <View style={styles.buttonContainer}>
@@ -73,19 +74,13 @@ export default function ConnectWIFI() {
                     <Text style={styles.appTitle}>Terrain Smart Drone ESP32 CAM</Text>
                     <Text style={{ ...styles.appTitle }}>{connectingText}</Text>
                 </View>
-                <Pressable
-                    onPress={() => {
-                        handleStart();
-                    }}
-                >
-                    <Image source={connectButtonPressed ? connectBuutonImagePressed : connectButtonImageIdle} style={styles.connectImage} contentFit="contain" />
+
+                <Pressable {...connectButton.pressableProps} onPress={handleStart}>
+                    <Image source={connectButton.imageSource} style={styles.connectImage} contentFit="contain" />
                 </Pressable>
-                <Pressable
-                    onPress={() => {
-                        handleQuit();
-                    }}
-                >
-                    <Image source={quitButtonPressed ? quitButtonImagePressed : quitButtonImageIdle} style={styles.quitImage} contentFit="contain" />
+
+                <Pressable {...quitButton.pressableProps} onPress={handleQuit}>
+                    <Image source={quitButton.imageSource} style={styles.quitImage} contentFit="contain" />
                 </Pressable>
             </View>
         </View >

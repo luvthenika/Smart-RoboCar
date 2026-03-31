@@ -1,8 +1,8 @@
-import { createServer } from 'node:http';
-import express from 'express';
+import express from "express";
+import { createServer } from "node:http";
 
-const ip = '192.168.3.5';
-const port = 8888;
+const ip = "192.168.3.5";
+const port = 8880;
 
 const app = express();
 const server = createServer(app);
