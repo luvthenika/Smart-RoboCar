@@ -4,7 +4,7 @@ import WebSocket, { WebSocketServer } from "ws";
 import { startFFmpegProcess } from "./videoProcessor.js";
 import { server } from "./videostreamServer.js";
 
-console.log("videostream module loaded"); // startup check
+console.log("videostream module loaded");
 
 const wss = new WebSocketServer({ server, path: "/video" });
 

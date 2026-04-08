@@ -7,10 +7,12 @@ function startFFmpegProcess() {
         cmd = spawn("ffmpeg", [
             "-f", "mjpeg",
             "-i", esp32Url,
-            "-f", "mjpeg",
-            "-vf", "fps=50",
-            "-",
             "-r", "15",
+            "-f", "mjpeg",
+            "-q:v", "5",
+            "-preset", "ultrafast",
+            "-tune", "zerolatency",
+            "-"
         ]);
 
     }
