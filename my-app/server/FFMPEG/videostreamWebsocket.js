@@ -1,8 +1,8 @@
 import { Buffer } from "node:buffer";
 import { parse } from "node:url";
 import WebSocket, { WebSocketServer } from "ws";
-import { startFFmpegProcess } from "./videoProcessor.js";
-import { server } from "./videostreamServer.js";
+import { startFFmpegProcess } from "../videoProcessor.js";
+import { server } from "../videostreamServer.js";
 
 console.log("videostream module loaded");
 
@@ -37,8 +37,6 @@ wss.on("connection", (ws, req) => {
                 );
 
                 if (ws.readyState === WebSocket.OPEN && isIosConnected) {
-                    // console.log("opened");
-                    // console.log("Відправляємо кадр розміром:", frame.length);
 
                     ws.send(frame, (err) => {
                         if (err) {
