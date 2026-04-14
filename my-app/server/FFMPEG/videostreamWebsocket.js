@@ -1,8 +1,8 @@
 import { Buffer } from "node:buffer";
 import { parse } from "node:url";
 import WebSocket, { WebSocketServer } from "ws";
-import { startFFmpegProcess } from "../videoProcessor.js";
-import { server } from "../videostreamServer.js";
+import { startFFmpegProcess } from "./videoProcessor.ts"
+import { server } from "./videostreamServer.js"
 
 console.log("videostream module loaded");
 
@@ -15,8 +15,8 @@ wss.on("connection", (ws, req) => {
     ws.deviceId = query.id;
     ws.deviceType = query.device;
 
+
     console.log(typeof ws.deviceId, typeof ws.deviceType);
-    console.log(`Клієнт підключився: ${ws.deviceType} з ID ${ws.deviceId}`);
 
     let ffmpegProcess = startFFmpegProcess();
     let buffer = Buffer.alloc(0);

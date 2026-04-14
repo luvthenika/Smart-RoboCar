@@ -14,7 +14,6 @@ const sendToRemoteServer = (command) => {
 };
 
 wss.on("connection", (ws) => {
-    console.log("Client connected to command WebSocket");
 
     ws.on("message", (data) => {
         const command = data.toString().trim();
@@ -34,7 +33,7 @@ wss.on("connection", (ws) => {
     });
 
     ws.on("close", () => {
-        console.log("Client disconnected from command WebSocket");
+        console.log("disconnected from command WebSocket");
     });
 
     ws.on("error", (err) => {
