@@ -10,3 +10,4 @@ server.listen(port, ip, () => {
     console.log(`Server running on http://${ip}:${port}`);
 });
 export { server };
+

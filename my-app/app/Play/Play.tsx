@@ -1,13 +1,18 @@
-import { useContext, useEffect, useRef, useState } from 'react';
-import { StreamContext } from '../context/StartStreaming';
-import { View, Pressable, StyleSheet } from 'react-native';
 import { Image } from 'expo-image';
+import { useRouter } from 'expo-router';
+import { useContext, useEffect, useRef } from 'react';
+import { Pressable, View } from 'react-native';
 import HealthBar from '../components/HealthBar/Heathbar';
+import { StreamContext } from '../context/StartStreaming';
 import { usePressableImage } from '../hooks/usePressableImage';
+import styles from './Play.styles';
 
 export default function Play() {
+    const router = useRouter();
     const { frameUrl } = useContext(StreamContext);
 
+    const backButtonImageIdle = require("../../assets/images/back_idle.svg");
+    const backButtonImagePressed = backButtonImageIdle;
     const arrowLeftIdle = require("../../assets/images/arrow_left_idle.svg");
     const arrowLeftPressed = require("../../assets/images/arrow_left_pressed.svg");
     const arrowRightIdle = require("../../assets/images/arrow_right_idle.svg");
@@ -19,6 +24,7 @@ export default function Play() {
     const stopButtonImageIdle = require("../../assets/images/stop_idle.svg");
     const stopButtonImagePressed = stopButtonImageIdle;
 
+    const backButton = usePressableImage(backButtonImageIdle, backButtonImagePressed);
     const leftButton = usePressableImage(arrowLeftIdle, arrowLeftPressed);
     const rightButton = usePressableImage(arrowRightIdle, arrowRightPressed);
     const forwardButton = usePressableImage(arrowForwardIdle, arrowForwardPressed);
@@ -26,7 +32,6 @@ export default function Play() {
     const stopButton = usePressableImage(stopButtonImageIdle, stopButtonImagePressed);
     const ws = useRef<WebSocket | null>(null);
     useEffect(() => {
-        // Connect
         ws.current = new WebSocket('ws://192.168.3.5:8880/commands');
 
         ws.current.onopen = () => console.log('WebSocket connected');
@@ -63,7 +68,9 @@ export default function Play() {
                     <Pressable {...leftButton.pressableProps} style={styles.buttonLeft} onPress={() => sendCommand("GO_LEFT")} >
                         <Image source={leftButton.imageSource} style={styles.buttonImage} contentFit="contain" />
                     </Pressable>
-
+                    <Pressable {...stopButton.pressableProps} style={styles.stopButton} onPress={() => sendCommand("STOP")}>
+                        <Image source={stopButton.imageSource} style={styles.buttonImage} contentFit="contain" />
+                    </Pressable>
                     <Pressable {...rightButton.pressableProps} style={styles.buttonRight} onPress={() => sendCommand("GO_RIGHT")}>
                         <Image source={rightButton.imageSource} style={styles.buttonImage} contentFit="contain" />
                     </Pressable>
@@ -76,80 +83,10 @@ export default function Play() {
                         <Image source={backwardButton.imageSource} style={styles.buttonImage} contentFit="contain" />
                     </Pressable>
                 </View>
-
-                <Pressable {...stopButton.pressableProps} style={styles.stopButton} onPress={() => sendCommand("STOP")}>
-                    <Image source={stopButton.imageSource} style={styles.buttonImage} contentFit="contain" />
+                <Pressable {...backButton.pressableProps} style={styles.backButton} onPress={() => router.push('/PreviewCamera/PreviewCamera')}>
+                    <Image source={backButton.imageSource} style={styles.buttonImage} contentFit="contain" />
                 </Pressable>
             </View>
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#FCEFF9",
-        gap: 20,
-        padding: 20,
-    },
-    imageFrame: {
-        width: 350,
-        height: 500,
-        borderRadius: 40,
-        borderWidth: 10,
-        borderColor: '#FFFFFF',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        overflow: 'hidden',
-        backgroundColor: '#000',
-        marginTop: 50,
-        position: 'relative',
-    },
-    mainImage: {
-        width: 700,
-        height: 500,
-    },
-    buttonContainer: {
-        position: 'relative',
-        height: 250,
-        width: 250,
-        transform: [{ rotate: '90deg' }],
-    },
-    buttonLeft: {
-        width: 100,
-        height: 80,
-        position: 'absolute',
-        left: 50,
-        top: 85,
-    },
-    stopButton: {
-        width: 120,
-        height: 100,
-        transform: [{ rotate: '90deg' }],
-    },
-    buttonRight: {
-        width: 100,
-        height: 80,
-        position: 'absolute',
-        left: 150,
-        top: 85,
-    },
-    buttonForward: {
-        width: 100,
-        height: 80,
-        position: 'absolute',
-        left: 100,
-        top: 5,
-    },
-    buttonBackward: {
-        width: 100,
-        height: 80,
-        position: 'absolute',
-        left: 100,
-        top: 160,
-    },
-    buttonImage: {
-        width: '100%',
-        height: '100%',
-    }
-});

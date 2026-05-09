@@ -1,0 +1,80 @@
+import { StyleSheet } from 'react-native';
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#FCEFF9",
+        gap: 20,
+        padding: 20,
+    },
+    imageFrame: {
+        width: 350,
+        height: 500,
+        borderRadius: 40,
+        borderWidth: 10,
+        borderColor: '#FFFFFF',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        overflow: 'hidden',
+        backgroundColor: '#000',
+        marginTop: 50,
+        position: 'relative',
+    },
+    mainImage: {
+        width: 700,
+        height: 500,
+    },
+    buttonContainer: {
+        position: 'relative',
+        height: 250,
+        width: 250,
+        transform: [{ rotate: '90deg' }],
+    },
+    buttonLeft: {
+        width: 100,
+        height: 80,
+        position: 'absolute',
+        left: 20,
+        top: 85,
+    },
+    stopButton: {
+        width: 100,
+        height: 80,
+        position: 'absolute',
+        left: 100,
+        top: 85,
+        transform: [{ rotate: '90deg' }],
+    },
+    buttonRight: {
+        width: 100,
+        height: 80,
+        position: 'absolute',
+        left: 180,
+        top: 85,
+    },
+    buttonForward: {
+        width: 100,
+        height: 80,
+        position: 'absolute',
+        left: 100,
+        top: 5,
+    },
+    buttonBackward: {
+        width: 100,
+        height: 80,
+        position: 'absolute',
+        left: 100,
+        top: 160,
+    },
+    buttonImage: {
+        width: '100%',
+        height: '100%',
+    },
+    backButton: {
+        width: 100,
+        height: 80,
+        transform: [{ rotate: '90deg' }],
+    }
+});
+
+export default styles;
