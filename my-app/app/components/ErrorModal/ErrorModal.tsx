@@ -13,6 +13,9 @@ interface RetroButtonProps {
     onPress: () => void;
     disabled?: boolean;
 }
+interface ErrorModalProps {
+    onReload?: () => void;
+}
 const RetroButton = ({ title, onPress, disabled }: RetroButtonProps) => {
     return (
         <TouchableOpacity
@@ -27,7 +30,7 @@ const RetroButton = ({ title, onPress, disabled }: RetroButtonProps) => {
     );
 };
 
-const ErrorModal = () => {
+const ErrorModal = ({ onReload }: ErrorModalProps) => {
     const [modalVisible, setModalVisible] = useState(true);
 
     // Your font loader
@@ -53,14 +56,8 @@ const ErrorModal = () => {
                 onRequestClose={closeModal}
             >
                 <View style={styles.centeredView}>
-
-                    {/* Outer white "sticker" border - kept slightly rounded to match the sticker look */}
                     <View style={styles.stickerBorder}>
-
-                        {/* Main Window - Sharp edges, no border radius */}
                         <View style={styles.window}>
-
-                            {/* Pink Title Bar */}
                             <View style={styles.titleBar}>
                                 <Text style={[styles.fontPixel, styles.titleText]}>System Error</Text>
 
@@ -68,8 +65,6 @@ const ErrorModal = () => {
                                     <Text style={[styles.fontPixel, styles.closeBtnText]}>x</Text>
                                 </TouchableOpacity>
                             </View>
-
-                            {/* Beige Content Body */}
                             <View style={styles.windowBody}>
                                 <View style={styles.contentRow}>
 
@@ -91,7 +86,10 @@ const ErrorModal = () => {
                                 {/* Bottom Buttons */}
                                 <View style={styles.buttonContainer}>
                                     <RetroButton title="Cancel" onPress={closeModal} />
-                                    <RetroButton title="Reload" onPress={closeModal} />
+                                    <RetroButton title="Reload" onPress={() => {
+                                        onReload?.();
+                                        closeModal();
+                                    }} />
                                 </View>
                             </View>
                         </View>

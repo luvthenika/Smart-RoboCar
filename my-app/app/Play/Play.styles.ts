@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         height: 80,
         position: 'absolute',
         left: 100,
-        top: 5,
+        top: 10,
     },
     buttonBackward: {
         width: 100,

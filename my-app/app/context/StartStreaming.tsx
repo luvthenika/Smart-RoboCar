@@ -4,7 +4,7 @@ interface StreamContextType {
     frameUrl: string;
     connect: () => void;
     disconnect: () => void;
-    error: Error | null;
+    error: boolean;
     closed: boolean;
     loading: boolean;
 }
@@ -14,7 +14,7 @@ export const StreamContext = createContext<StreamContextType>('' as unknown as S
 export const StreamProvider = ({ children }: { children: ReactNode }) => {
     const [frameUrl, setFrameUrl] = useState<string>('');
     const socketRef = useRef<WebSocket | null>(null);
-    const [error, setError] = useState<Error | null>(null);
+    const [error, setError] = useState(false);
     const [closed, setClosed] = useState(true);
     const [loading, setLoading] = useState(true);
 
@@ -26,9 +26,18 @@ export const StreamProvider = ({ children }: { children: ReactNode }) => {
         ws.onopen = () => {
             console.log("WebSocket connected");
         };
+
+        // Call 15 seonds Timeout if no data is received
+        const timeout = setTimeout(() => {
+            setError(true);
+            setLoading(false);
+            ws.close();
+        }, 15000);
         ws.onmessage = (event) => {
+            clearTimeout(timeout);
             if (typeof event.data !== 'object') {
                 setLoading(true);
+
             }
             const rawData = event.data;
             const base64data = Buffer.from(rawData).toString('base64');
@@ -36,15 +45,17 @@ export const StreamProvider = ({ children }: { children: ReactNode }) => {
         };
 
         ws.onclose = () => {
+            timeout && clearTimeout(timeout);
             console.log("WebSocket closed");
             socketRef.current = null;
             setClosed(true);
             setLoading(false);
         };
         ws.onerror = () => {
+            timeout && clearTimeout(timeout);
             console.error("WebSocket error");
             socketRef.current = null;
-            setError(new Error("WebSocket connection error"));
+            setError(true);
             setClosed(true);
             setLoading(false);
         };

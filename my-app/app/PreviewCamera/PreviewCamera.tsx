@@ -2,7 +2,7 @@ import { useFonts } from "expo-font";
 import { Image } from "expo-image";
 import { Href, useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { Pressable, View } from "react-native";
 import ErrorModal from "../components/ErrorModal/ErrorModal";
 import LoadingBar from "../components/LoadingBar/LoadingBar";
@@ -23,6 +23,46 @@ export default function PreviewCamera() {
     const stopButton = usePressableImage(stopButtonImageIdle, stopButtonImagePressed);
 
     const router = useRouter();
+    const commandSocketRef = useRef<WebSocket | null>(null);
+
+    const sendRestartCommand = () => {
+        if (commandSocketRef.current && commandSocketRef.current.readyState === WebSocket.OPEN) {
+            commandSocketRef.current.send("RESTART");
+            return;
+        }
+
+        const cmdWs = new WebSocket('ws://192.168.3.5:8880/commands');
+        cmdWs.onopen = () => {
+            console.log("Command WebSocket connected");
+            cmdWs.send("RESTART");
+        };
+        cmdWs.onmessage = (event) => {
+            console.log("Command WS message:", event.data);
+        };
+        cmdWs.onclose = () => {
+            console.log("Command WebSocket closed");
+            if (commandSocketRef.current === cmdWs) {
+                commandSocketRef.current = null;
+            }
+        };
+        cmdWs.onerror = (error) => {
+            console.error("Command WebSocket Error:", error);
+            if (commandSocketRef.current === cmdWs) {
+                commandSocketRef.current = null;
+            }
+        };
+        commandSocketRef.current = cmdWs;
+    };
+
+    useEffect(() => {
+        return () => {
+            if (commandSocketRef.current) {
+                commandSocketRef.current.close();
+                commandSocketRef.current = null;
+            }
+        };
+    }, []);
+
     const [loaded, errorFont] = useFonts({
         PixelifySans: require("../../assets/fonts/Pixelify_Sans/static/PixelifySans-Regular.ttf"),
     });
@@ -52,7 +92,7 @@ export default function PreviewCamera() {
         <View style={styles.container}>
             <View style={styles.imageFrame}>
                 {error ? (
-                    <ErrorModal />
+                    <ErrorModal onReload={sendRestartCommand} />
                 ) : loading ? (
                     <View style={styles.loadingContainer}>
                         <LoadingBar />
@@ -66,7 +106,7 @@ export default function PreviewCamera() {
                 )}
             </View>
 
-            <Pressable {...startButton.pressableProps} onPress={handleGameStart} style={styles.button}>
+            <Pressable {...startButton.pressableProps} onPress={handleGameStart} style={styles.button} disabled={loading || error}>
                 <Image
                     source={startButton.imageSource}
                     style={styles.buttonImage}
