@@ -1,20 +1,35 @@
 import { Buffer } from "node:buffer";
 import { parse } from "node:url";
 import WebSocket, { WebSocketServer } from "ws";
-import { startFFmpegProcess } from "./videoProcessor.ts";
+import { startFFmpegProcess } from "./videoProcessor.js";
 import { server } from "./videostreamServer.js";
+import { IncomingMessage } from "node:http";
+
+declare module 'ws' {
+    interface WebSocket {
+        deviceId?: string;
+        deviceType?: string;
+    }
+}
 
 console.log("videostream module loaded");
 
 const wss = new WebSocketServer({ server, path: "/video" });
 
-wss.on("connection", (ws, req) => {
+wss.on("connection", (ws: WebSocket, req: IncomingMessage) => {
     console.log("Client connected:", req.url);
 
-    const query = parse(req.url, true).query;
-    ws.deviceId = query.id;
-    ws.deviceType = query.device;
+    if (!req.url) {
+        ws.close();
+        return;
+    }
 
+    const query = parse(req.url, true).query;
+    const deviceId = Array.isArray(query.id) ? query.id[0] : query.id;
+    const deviceType = Array.isArray(query.device) ? query.device[0] : query.device;
+
+    ws.deviceId = deviceId;
+    ws.deviceType = deviceType;
 
     console.log(typeof ws.deviceId, typeof ws.deviceType);
 
