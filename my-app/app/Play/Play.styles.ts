@@ -70,11 +70,24 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
     },
+    smallButtonWrapper: {
+        marginRight: 30,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 30,
+        width: 100,
+        height: 160,
+    },
     backButton: {
         width: 100,
         height: 80,
         transform: [{ rotate: '90deg' }],
-    }
+    },
+    smartButton: {
+        width: 100,
+        height: 80,
+        transform: [{ rotate: '90deg' }],
+    },
 });
 
 export default styles;

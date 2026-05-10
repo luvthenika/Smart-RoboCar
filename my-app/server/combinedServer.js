@@ -3,7 +3,7 @@ import { Buffer } from "node:buffer";
 import { createServer, request as httpRequest } from "node:http";
 import { parse } from "node:url";
 import WebSocket, { WebSocketServer } from "ws";
-import { startFFmpegProcess } from "./FFMPEG/videoProcessor.ts";
+import { startFFmpegProcess, startPythonProcess } from "./FFMPEG/videoProcessor.ts";
 
 const PORT = 8888;
 const HOST = "192.168.3.5";
@@ -20,25 +20,23 @@ app.get("/", (req, res) => {
 });
 
 const videoWss = new WebSocketServer({ server, path: "/video" });
-const commandWss = new WebSocketServer({ server, path: "/commands" });
-const sensorWss = new WebSocketServer({ server, path: "/sensor-data" });
+const commandWss = new WebSocketServer({ server, path: "/esp-32" });
 
-const PYTHON_SENSOR_HOST = "127.0.0.1";
-const PYTHON_SENSOR_PORT = 5000;
-const PYTHON_SENSOR_PATH = "/sensor";
 
 let ffmpegProcess = null;
-let videoBuffer = Buffer.alloc(0);
-
-function stopVideoProcess() {
+const stopVideoProcess = () => {
     if (ffmpegProcess) {
         ffmpegProcess.kill();
         ffmpegProcess = null;
-        videoBuffer = Buffer.alloc(0);
     }
+    if (pythonProcess) {
+        pythonProcess.kill();
+        pythonProcess = null;
+    }
+    videoBuffer = Buffer.alloc(0);
 }
 
-function broadcastVideoFrame(frame) {
+const broadcastVideoFrame = (frame) => {
     videoWss.clients.forEach((client) => {
         if (client.readyState === WebSocket.OPEN) {
             client.send(frame, (err) => {
@@ -50,41 +48,15 @@ function broadcastVideoFrame(frame) {
     });
 }
 
-function sendSensorDataToPython(data) {
-    return new Promise((resolve) => {
-        const body = JSON.stringify(data);
-        const req = httpRequest(
-            {
-                host: PYTHON_SENSOR_HOST,
-                port: PYTHON_SENSOR_PORT,
-                path: PYTHON_SENSOR_PATH,
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            },
-            (res) => {
-                res.on("data", () => { });
-                res.on("end", () => resolve(res.statusCode));
-            }
-        );
 
-        req.on("error", (err) => {
-            console.error("Failed to send sensor data to Python server:", err);
-            resolve(null);
-        });
-
-        req.write(body);
-        req.end();
-    });
-}
-
-function ensureVideoProcess() {
+const ensureVideoProcess = () => {
     if (ffmpegProcess) {
         return;
     }
 
     ffmpegProcess = startFFmpegProcess();
+    pythonProcess = startPythonProcess();
+
     if (!ffmpegProcess?.stdout) {
         console.error("Failed to start FFmpeg process for video streaming.");
         ffmpegProcess = null;
@@ -102,6 +74,9 @@ function ensureVideoProcess() {
                 const frame = videoBuffer.slice(start, end + 2);
                 videoBuffer = videoBuffer.slice(end + 2);
                 broadcastVideoFrame(frame);
+                if (pythonProcess && pythonProcess.stdin) {
+                    pythonProcess.stdin.write(frame);
+                }
             } else {
                 break;
             }
@@ -116,6 +91,16 @@ function ensureVideoProcess() {
 
     ffmpegProcess.on("error", (err) => {
         console.error("FFmpeg process error:", err);
+        stopVideoProcess();
+    });
+
+    pythonProcess.on("exit", (code, signal) => {
+        console.log(`Python exited with code=${code}, signal=${signal}`);
+        pythonProcess = null;
+    });
+
+    pythonProcess.on("error", (err) => {
+        console.error("Python process error:", err);
         stopVideoProcess();
     });
 }
@@ -141,30 +126,6 @@ videoWss.on("connection", (ws, req) => {
     });
 });
 
-sensorWss.on("connection", (ws, req) => {
-    console.log("Sensor client connected:", req.url);
-
-    ws.on("message", async (data) => {
-        let payload;
-
-        try {
-            payload = JSON.parse(data.toString());
-        } catch {
-            payload = { raw: data.toString() };
-        }
-
-        console.log("Sensor data received:", payload);
-        await sendSensorDataToPython(payload);
-    });
-
-    ws.on("close", () => {
-        console.log("Sensor client disconnected");
-    });
-
-    ws.on("error", (err) => {
-        console.error("Sensor WebSocket error:", err);
-    });
-});
 
 commandWss.on("connection", (ws) => {
     console.log("Command client connected");

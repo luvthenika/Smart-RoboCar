@@ -1,10 +1,11 @@
 // 
 import { spawn } from 'node:child_process';
+import path from 'path';
 
 function startFFmpegProcess() {
     const esp32Url = "http://192.168.3.148:81/stream";
 
-    const cmd = spawn("ffmpeg", [
+    const ffmpeg = spawn("ffmpeg", [
         "-f", "mjpeg",
         "-i", esp32Url,
         "-r", "15",
@@ -15,9 +16,14 @@ function startFFmpegProcess() {
         "-"
     ]);
 
-
-    return cmd;
+    return ffmpeg;
 }
 
-export { startFFmpegProcess };
+function startPythonProcess() {
+    const pythonScript = path.join(__dirname, '../../image-processing/FFMPEG/ffmpeg.py');
+    const python = spawn('python', [pythonScript]);
+    return python;
+}
+
+export { startFFmpegProcess, startPythonProcess };
 

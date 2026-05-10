@@ -22,7 +22,7 @@ export default function Play() {
     const arrowBackwardIdle = require("../../assets/images/arrow_backward_idle.svg");
     const arrowBackwardPressed = require("../../assets/images/arrow_backward_pressed.svg");
     const stopButtonImageIdle = require("../../assets/images/stop_idle.svg");
-    const stopButtonImagePressed = require("../../assets/images/stop_pressed.svg");
+    const stopButtonImagePressed = stopButtonImageIdle;
     const smartButtonImageIdle = require("../../assets/images/smart_idle.svg");
     const smartButtonImagePressed = require("../../assets/images/smart_pressed.svg");
 

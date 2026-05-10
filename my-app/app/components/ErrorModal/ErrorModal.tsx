@@ -143,12 +143,12 @@ const styles = StyleSheet.create({
         width: 320,
         borderWidth: 2,
         borderColor: '#f49ac1',
-        backgroundColor: '#eaddcd',
+        backgroundColor: '#eae4e4',
         // Strictly NO border radius here for pixel perfection
         borderRadius: 0,
     },
     titleBar: {
-        backgroundColor: '#f49ac1',
+        backgroundColor: '#fca7da',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',

@@ -17,7 +17,7 @@ export default function PreviewCamera() {
     const stopButtonImageIdle = require("../../assets/images/back_idle.svg");
 
     const startButtonImagePressed = startButtonImageIdle;
-    const stopButtonImagePressed = stopButtonImageIdle;
+    const stopButtonImagePressed = require("../../assets/images/back_pressed.svg");
 
     const startButton = usePressableImage(startButtonImageIdle, startButtonImagePressed);
     const stopButton = usePressableImage(stopButtonImageIdle, stopButtonImagePressed);
@@ -106,7 +106,9 @@ export default function PreviewCamera() {
                 )}
             </View>
 
-            <Pressable {...startButton.pressableProps} onPress={handleGameStart} style={styles.button} disabled={loading || error}>
+            <Pressable {...startButton.pressableProps} onPress={handleGameStart} style={styles.button}
+            // disabled={loading || error}
+            >
                 <Image
                     source={startButton.imageSource}
                     style={styles.buttonImage}
