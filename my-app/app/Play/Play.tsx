@@ -32,7 +32,7 @@ export default function Play() {
     const forwardButton = usePressableImage(arrowForwardIdle, arrowForwardPressed);
     const backwardButton = usePressableImage(arrowBackwardIdle, arrowBackwardPressed);
     const stopButton = usePressableImage(stopButtonImageIdle, stopButtonImagePressed);
-    const smartButton = usePressableImage(smartButtonImageIdle, smartButtonImagePressed);
+    const smartButton = usePressableImage(smartButtonImageIdle, smartButtonImagePressed, true);
     const ws = useRef<WebSocket | null>(null);
     useEffect(() => {
         ws.current = new WebSocket('ws://192.168.3.5:8880/commands');

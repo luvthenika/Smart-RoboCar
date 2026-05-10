@@ -144,7 +144,6 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: '#f49ac1',
         backgroundColor: '#eae4e4',
-        // Strictly NO border radius here for pixel perfection
         borderRadius: 0,
     },
     titleBar: {
@@ -158,7 +157,6 @@ const styles = StyleSheet.create({
     titleText: {
         color: '#FFFFFF',
         fontSize: 18,
-        // Hard drop shadow creates a pixelated text shadow effect
         textShadowColor: '#000',
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 0,
@@ -195,7 +193,6 @@ const styles = StyleSheet.create({
         marginBottom: 25,
     },
 
-    // --- Pixelated Error Icon ---
     pixelIconContainer: {
         width: 28,
         height: 28,

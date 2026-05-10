@@ -139,6 +139,9 @@ commandWss.on("connection", (ws) => {
             case "GO_FORWARD":
             case "GO_BACKWARD":
             case "STOP":
+            case "SMART_MODE":
+            case "MANUAL_MODE":
+            case "RESTART":
                 console.log(`${command} command received`);
                 commandWss.clients.forEach((client) => {
                     if (client.readyState === WebSocket.OPEN) {
