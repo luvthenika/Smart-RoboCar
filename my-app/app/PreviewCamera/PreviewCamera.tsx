@@ -87,6 +87,7 @@ export default function PreviewCamera() {
         router.push('/StartConnect/StartConnect' as Href);
     };
     console.log(loading)
+    console.log("frame", frameUrl)
     console.log('error', error)
     return (
         <View style={styles.container}>

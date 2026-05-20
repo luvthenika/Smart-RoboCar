@@ -18,10 +18,12 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         overflow: 'hidden',
         backgroundColor: '#fff',
+
     },
     mainImage: {
         width: 550,
         height: '100%',
+        transform: [{ rotate: '180deg' }],
     },
     button: {
         width: 200,

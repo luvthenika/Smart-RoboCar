@@ -1,8 +1,8 @@
 import { Buffer } from "node:buffer";
 import { parse } from "node:url";
 import WebSocket, { WebSocketServer } from "ws";
-import { startFFmpegProcess } from "./videoProcessor.js";
-import { server } from "./videostreamServer.js";
+import { startFFmpegProcess } from "./videoProcessor.ts";
+import { server } from "./videostreamServer.ts";
 import { IncomingMessage } from "node:http";
 
 declare module 'ws' {

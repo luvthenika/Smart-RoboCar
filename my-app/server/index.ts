@@ -1,4 +1,6 @@
-import "./FFMPEG/videostreamServer.js";
-import "./FFMPEG/videostreamWebsocket.js";
-import "./commandServer.js";
+import "./FFMPEG/videoProcessor.ts";
+import "./FFMPEG/videostreamServer.ts";
+import "./FFMPEG/videostreamWebsocket.ts";
+import "./commandServer.ts";
 import "./commands.js";
+

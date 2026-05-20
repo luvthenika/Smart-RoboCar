@@ -1,7 +1,7 @@
 import WebSocket, { WebSocketServer } from "ws";
-import { server } from "./commandServer.js";
+import { server } from "./commandServer.ts";
 
-const wss = new WebSocketServer({ server, path: "/commands" });
+const wss = new WebSocketServer({ server, path: "/esp-32" });
 
 const sendToRemoteServer = (command) => {
     wss.clients.forEach((client) => {

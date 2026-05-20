@@ -35,7 +35,7 @@ export default function Play() {
     const smartButton = usePressableImage(smartButtonImageIdle, smartButtonImagePressed, true);
     const ws = useRef<WebSocket | null>(null);
     useEffect(() => {
-        ws.current = new WebSocket('ws://192.168.3.5:8880/commands');
+        ws.current = new WebSocket('ws://192.168.3.5:8880/esp-32');
 
         ws.current.onopen = () => console.log('WebSocket connected');
         ws.current.onmessage = (event) => {
