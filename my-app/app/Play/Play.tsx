@@ -1,8 +1,9 @@
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
-import { useContext, useEffect, useRef } from 'react';
-import { Pressable, View } from 'react-native';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { Pressable, Text, View } from 'react-native';
 import HealthBar from '../components/HealthBar/Heathbar';
+import Score from '../components/Score/Score';
 import { StreamContext } from '../context/StartStreaming';
 import { usePressableImage } from '../hooks/usePressableImage';
 import styles from './Play.styles';
@@ -10,6 +11,7 @@ import styles from './Play.styles';
 export default function Play() {
     const router = useRouter();
     const { frameUrl } = useContext(StreamContext);
+    const [mode, setMode] = useState<"MANUAL_MODE" | "SMART_MODE">("MANUAL_MODE");
 
     const backButtonImageIdle = require("../../assets/images/back_idle.svg");
     const backButtonImagePressed = require("../../assets/images/back_pressed.svg");
@@ -34,12 +36,23 @@ export default function Play() {
     const stopButton = usePressableImage(stopButtonImageIdle, stopButtonImagePressed);
     const smartButton = usePressableImage(smartButtonImageIdle, smartButtonImagePressed, true);
     const ws = useRef<WebSocket | null>(null);
+    const [pythonMessage, setPythonMessage] = useState<string | null>(null);
+    const [score, setScore] = useState<Set<string>>(new Set());
+
     useEffect(() => {
-        ws.current = new WebSocket('ws://192.168.3.5:8880/esp-32');
+        ws.current = new WebSocket('ws://192.168.3.5:8880/esp-32?role=client');
 
         ws.current.onopen = () => console.log('WebSocket connected');
         ws.current.onmessage = (event) => {
-            console.log('Received message:', event.data);
+            const payload = event.data?.toString?.() ?? String(event.data);
+            console.log('Received message:', payload);
+            setPythonMessage(payload);
+            setScore((prev) => {
+                const next = new Set(prev);
+                next.add(payload);
+                return next;
+            });
+            setTimeout(() => setPythonMessage(null), 3000); // Clear message after 3 seconds
         };
         ws.current.onclose = () => console.log('WebSocket closed');
         ws.current.onerror = (error) => console.error('WebSocket Error:', error);
@@ -62,8 +75,14 @@ export default function Play() {
                     source={{ uri: frameUrl }}
                     style={styles.mainImage}
                     contentFit="contain"
+
                 />
+                <Score score={score.size} />
                 <HealthBar />
+
+                {pythonMessage ? (
+                    <Text style={styles.pythonMessage}>Python: {pythonMessage}</Text>
+                ) : null}
             </View>
 
             <View style={{ flexDirection: 'row', gap: 5, alignItems: 'center' }}>
@@ -90,7 +109,15 @@ export default function Play() {
                     <Pressable {...backButton.pressableProps} style={styles.backButton} onPress={() => router.push('/PreviewCamera/PreviewCamera')}>
                         <Image source={backButton.imageSource} style={styles.buttonImage} contentFit="contain" />
                     </Pressable>
-                    <Pressable {...smartButton.pressableProps} style={styles.smartButton} onPress={() => sendCommand("SMART_MODE")}>
+                    <Pressable
+                        {...smartButton.pressableProps}
+                        style={styles.smartButton}
+                        onPress={() => {
+                            const newMode = mode === "MANUAL_MODE" ? "SMART_MODE" : "MANUAL_MODE";
+                            setMode(newMode);
+                            sendCommand(newMode);
+                        }}
+                    >
                         <Image source={smartButton.imageSource} style={styles.buttonImage} contentFit="contain" />
                     </Pressable>
                 </View>

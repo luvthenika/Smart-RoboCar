@@ -25,6 +25,18 @@ const styles = StyleSheet.create({
         height: 500,
         transform: [{ rotate: '-90deg' }],
     },
+    pythonMessage: {
+        position: 'absolute',
+        bottom: 10,
+        left: 10,
+        right: 10,
+        color: '#fff',
+        fontSize: 14,
+        textAlign: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        padding: 8,
+        borderRadius: 10,
+    },
     buttonContainer: {
         position: 'relative',
         height: 250,

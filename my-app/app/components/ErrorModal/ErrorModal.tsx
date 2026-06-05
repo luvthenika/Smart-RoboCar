@@ -33,7 +33,6 @@ const RetroButton = ({ title, onPress, disabled }: RetroButtonProps) => {
 const ErrorModal = ({ onReload }: ErrorModalProps) => {
     const [modalVisible, setModalVisible] = useState(true);
 
-    // Your font loader
     const [loaded, errorFont] = useFonts({
         PixelifySans: require("../../../assets/fonts/Pixelify_Sans/static/PixelifySans-Regular.ttf"),
     });
@@ -42,7 +41,6 @@ const ErrorModal = ({ onReload }: ErrorModalProps) => {
         setModalVisible(false);
     };
 
-    // Wait for font to load before rendering
     if (!loaded) {
         return null;
     }
@@ -68,13 +66,11 @@ const ErrorModal = ({ onReload }: ErrorModalProps) => {
                             <View style={styles.windowBody}>
                                 <View style={styles.contentRow}>
 
-                                    {/* Pixelated Red Error Icon (built with overlapping blocky views) */}
                                     <View style={styles.pixelIconContainer}>
                                         <View style={styles.pixelIconVertical} />
                                         <View style={styles.pixelIconHorizontal}>
                                             <Text style={[styles.fontPixel, styles.errorIconText]}>x</Text>
                                         </View>
-                                        {/* Blocky shadow */}
                                         <View style={styles.pixelIconShadow} />
                                     </View>
 
@@ -83,7 +79,6 @@ const ErrorModal = ({ onReload }: ErrorModalProps) => {
                                     </Text>
                                 </View>
 
-                                {/* Bottom Buttons */}
                                 <View style={styles.buttonContainer}>
                                     <RetroButton title="Cancel" onPress={closeModal} />
                                     <RetroButton title="Reload" onPress={() => {
@@ -102,7 +97,6 @@ const ErrorModal = ({ onReload }: ErrorModalProps) => {
 };
 
 const styles = StyleSheet.create({
-    // --- Global Font Style ---
     fontPixel: {
         fontFamily: 'PixelifySans',
     },
@@ -132,7 +126,7 @@ const styles = StyleSheet.create({
     stickerBorder: {
         backgroundColor: '#FFFFFF',
         padding: 4,
-        borderRadius: 8, // The outside sticker is smooth
+        borderRadius: 8,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.15,
@@ -230,13 +224,10 @@ const styles = StyleSheet.create({
         fontSize: 22,
         lineHeight: 22,
         marginBottom: 2,
-        // Drop shadow on the X
         textShadowColor: '#000',
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 0,
     },
-    // ----------------------------
-
     messageText: {
         flex: 1,
         color: '#000000',
@@ -259,7 +250,7 @@ const styles = StyleSheet.create({
         borderLeftColor: '#ffffff',
         borderBottomColor: '#000000',
         borderRightColor: '#000000',
-        borderRadius: 0, // Sharp edges
+        borderRadius: 0,
     },
     retroButtonDisabled: {
         borderTopColor: '#d3cfc1',

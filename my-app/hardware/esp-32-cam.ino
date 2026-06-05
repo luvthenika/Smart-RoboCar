@@ -1,352 +1,494 @@
 #include "esp_camera.h"
 #include <WiFi.h>
-#include "esp_timer.h"
-#include "img_converters.h"
-#include "Arduino.h"
-#include "fb_gfx.h"
-#include "soc/soc.h"           //disable brownout problems
-#include "soc/rtc_cntl_reg.h"  //disable brownout problems
-#include "esp_http_server.h"
 #include <map>
 #include <string>
+#include <WiFiServer.h>
+#include <WebServer.h>
+#include "Adafruit_NeoPixel.h"
 
-#include <WebSocketsClient.h>  // написати про доскачування
-#include <ArduinoJson.h>       // написати про доскачування
+
+
+
+// ===================
+// Select camera model
+// ===================
+//#define CAMERA_MODEL_WROVER_KIT // Has PSRAM
+//#define CAMERA_MODEL_ESP_EYE // Has PSRAM
+#define CAMERA_MODEL_ESP32S3_EYE  // Has PSRAM
+//#define CAMERA_MODEL_M5STACK_PSRAM // Has PSRAM
+//#define CAMERA_MODEL_M5STACK_V2_PSRAM // M5Camera version B Has PSRAM
+//#define CAMERA_MODEL_M5STACK_WIDE // Has PSRAM
+//#define CAMERA_MODEL_M5STACK_ESP32CAM // No PSRAM
+//#define CAMERA_MODEL_M5STACK_UNITCAM // No PSRAM
+//#define CAMERA_MODEL_AI_THINKER // Has PSRAM
+//#define CAMERA_MODEL_TTGO_T_JOURNAL // No PSRAM
+// ** Espressif Internal Boards **
+//#define CAMERA_MODEL_ESP32_CAM_BOARD
+//#define CAMERA_MODEL_ESP32S2_CAM_BOARD
+//#define CAMERA_MODEL_ESP32S3_CAM_LCD
 #include <WebSocketsClient.h>
-#include <iostream>
 
+#include "camera_pins.h"
 
+#define MOTOR_IN1 2
+#define MOTOR_IN2 45
+#define MOTOR_IN3 47
+#define MOTOR_IN4 48
+#define STBY 14
 
-//Replace with your network credentials
-const char* ssid = "Nika";
-const char* password = "09102004";
-const char* serverIp = "192.168.3.5";
+#define TRIG_PIN 42
+#define ECHO_PIN_L 41
+#define ECHO_PIN_C 39
+#define ECHO_PIN_R 40
+
+const char *ssid = "Nika";
+const char *password = "09102004";
+const char *serverIp = "192.168.3.5";
 const int port = 8880;
-bool isManualDisconnect = false;
+bool autonomousMode = true;
 
-// SocketIOclient socketIO;
+int MAX_SPEED = 90;
 WebSocketsClient webSocket;
 typedef void (*CommandHandler)();
-
 std::map<std::string, CommandHandler> commandMap;
-bool isWIFIConnected = false;
 
+unsigned long lastAutonomousTime = 0;
+const int AUTONOMOUS_INTERVAL = 150;
 
+Adafruit_NeoPixel strip(16, 1, NEO_GRB + NEO_KHZ800);
 
-// Motor Pins
-// БУЛО
-// #define MOTOR_IN1 13                 //first
-// #define MOTOR_IN2 12                 //second
-// #define MOTOR_IN3 15                 //third
-// #define MOTOR_IN4 14                 // forth
-// // #define ULTRASOUND_SENSOR_TRIGGER 1  // sensor for ultrasound
-// // #define ULTRASOUND_SENSOR_ECHO 3     // sensor for ultrasound
-// #define STBY 2                       // sensor for ultrasound
-
-#define MOTOR_IN1_IN2 12                 //first               //third
-#define MOTOR_IN3_IN4 14                 // forth
-#define ULTRASOUND_SENSOR_TRIGGER 13  // sensor for ultrasound
-#define ULTRASOUND_SENSOR_ECHO 15     // sensor for ultrasound
-#define STBY 2  
-
-long duration;
-int distance;
-
-int MAX_SPEED = 100;
-int TURN_SPEED = 100;
-
-
-#define PART_BOUNDARY "123456789000000000000987654321"
-
-// This project was tested with the AI Thinker Model, M5STACK PSRAM Model and M5STACK WITHOUT PSRAM
-#define CAMERA_MODEL_AI_THINKER
-//#define CAMERA_MODEL_M5STACK_PSRAM
-//#define CAMERA_MODEL_M5STACK_WITHOUT_PSRAM
-
-// Not tested with this model
-//#define CAMERA_MODEL_WROVER_KIT
-
-#if defined(CAMERA_MODEL_WROVER_KIT)
-#define PWDN_GPIO_NUM -1
-#define RESET_GPIO_NUM -1
-#define XCLK_GPIO_NUM 21
-#define SIOD_GPIO_NUM 26
-#define SIOC_GPIO_NUM 27
-
-#define Y9_GPIO_NUM 35
-#define Y8_GPIO_NUM 34
-#define Y7_GPIO_NUM 39
-#define Y6_GPIO_NUM 36
-#define Y5_GPIO_NUM 19
-#define Y4_GPIO_NUM 18
-#define Y3_GPIO_NUM 5
-#define Y2_GPIO_NUM 4
-#define VSYNC_GPIO_NUM 25
-#define HREF_GPIO_NUM 23
-#define PCLK_GPIO_NUM 22
-
-#elif defined(CAMERA_MODEL_M5STACK_PSRAM)
-#define PWDN_GPIO_NUM -1
-#define RESET_GPIO_NUM 15
-#define XCLK_GPIO_NUM 27
-#define SIOD_GPIO_NUM 25
-#define SIOC_GPIO_NUM 23
-
-#define Y9_GPIO_NUM 19
-#define Y8_GPIO_NUM 36
-#define Y7_GPIO_NUM 18
-#define Y6_GPIO_NUM 39
-#define Y5_GPIO_NUM 5
-#define Y4_GPIO_NUM 34
-#define Y3_GPIO_NUM 35
-#define Y2_GPIO_NUM 32
-#define VSYNC_GPIO_NUM 22
-#define HREF_GPIO_NUM 26
-#define PCLK_GPIO_NUM 21
-
-#elif defined(CAMERA_MODEL_M5STACK_WITHOUT_PSRAM)
-#define PWDN_GPIO_NUM -1
-#define RESET_GPIO_NUM 15
-#define XCLK_GPIO_NUM 27
-#define SIOD_GPIO_NUM 25
-#define SIOC_GPIO_NUM 23
-
-#define Y9_GPIO_NUM 19
-#define Y8_GPIO_NUM 36
-#define Y7_GPIO_NUM 18
-#define Y6_GPIO_NUM 39
-#define Y5_GPIO_NUM 5
-#define Y4_GPIO_NUM 34
-#define Y3_GPIO_NUM 35
-#define Y2_GPIO_NUM 17
-#define VSYNC_GPIO_NUM 22
-#define HREF_GPIO_NUM 26
-#define PCLK_GPIO_NUM 21
-
-#elif defined(CAMERA_MODEL_AI_THINKER)
-#define PWDN_GPIO_NUM 32
-#define RESET_GPIO_NUM -1
-#define XCLK_GPIO_NUM 0
-#define SIOD_GPIO_NUM 26
-#define SIOC_GPIO_NUM 27
-
-#define Y9_GPIO_NUM 35
-#define Y8_GPIO_NUM 34
-#define Y7_GPIO_NUM 39
-#define Y6_GPIO_NUM 36
-#define Y5_GPIO_NUM 21
-#define Y4_GPIO_NUM 19
-#define Y3_GPIO_NUM 18
-#define Y2_GPIO_NUM 5
-#define VSYNC_GPIO_NUM 25
-#define HREF_GPIO_NUM 23
-#define PCLK_GPIO_NUM 22
-#else
-#error "Camera model not selected"
-#endif
-
-static const char* _STREAM_CONTENT_TYPE = "multipart/x-mixed-replace;boundary=" PART_BOUNDARY;
-static const char* _STREAM_BOUNDARY = "\r\n--" PART_BOUNDARY "\r\n";
-static const char* _STREAM_PART = "Content-Type: image/jpeg\r\nContent-Length: %u\r\n\r\n";
-
-httpd_handle_t stream_httpd = NULL;
-
-static esp_err_t stream_handler(httpd_req_t* req) {
-  camera_fb_t* fb = NULL;
-  esp_err_t res = ESP_OK;
-  size_t _jpg_buf_len = 0;
-  uint8_t* _jpg_buf = NULL;
-  char* part_buf[64];
-
-  res = httpd_resp_set_type(req, _STREAM_CONTENT_TYPE);
-  if (res != ESP_OK) {
-    return res;
-  }
-
-  while (true) {
-    fb = esp_camera_fb_get();
-    if (!fb) {
-      Serial.println("Camera capture failed");
-      res = ESP_FAIL;
-    } else {
-      if (fb->width > 400) {
-        if (fb->format != PIXFORMAT_JPEG) {
-          bool jpeg_converted = frame2jpg(fb, 80, &_jpg_buf, &_jpg_buf_len);
-          esp_camera_fb_return(fb);
-          fb = NULL;
-          if (!jpeg_converted) {
-            Serial.println("JPEG compression failed");
-            res = ESP_FAIL;
-          }
-        } else {
-          _jpg_buf_len = fb->len;
-          _jpg_buf = fb->buf;
-        }
-      }
-    }
-    if (res == ESP_OK) {
-      size_t hlen = snprintf((char*)part_buf, 64, _STREAM_PART, _jpg_buf_len);
-      res = httpd_resp_send_chunk(req, (const char*)part_buf, hlen);
-    }
-    if (res == ESP_OK) {
-      res = httpd_resp_send_chunk(req, (const char*)_jpg_buf, _jpg_buf_len);
-    }
-    if (res == ESP_OK) {
-      res = httpd_resp_send_chunk(req, _STREAM_BOUNDARY, strlen(_STREAM_BOUNDARY));
-    }
-    if (fb) {
-      esp_camera_fb_return(fb);
-      fb = NULL;
-      _jpg_buf = NULL;
-    } else if (_jpg_buf) {
-      free(_jpg_buf);
-      _jpg_buf = NULL;
-    }
-    if (res != ESP_OK) {
-      break;
-    }
-    //Serial.printf("MJPG: %uB\n",(uint32_t)(_jpg_buf_len));
-  }
-  return res;
+// ===================
+// Logging
+// ===================
+void log(String msg) {
+  Serial.println(msg);
+  webSocket.sendTXT(msg);
 }
 
-void startCameraServer() {
-  httpd_config_t config = HTTPD_DEFAULT_CONFIG();
-  config.server_port = 80;
+WebServer textServer(8080);
+float sensorLeft = 0.0;
+float sensorCenter = 0.0;
+float sensorRight = 0.0;
 
-  httpd_uri_t index_uri = {
-    .uri = "/",
-    .method = HTTP_GET,
-    .handler = stream_handler,
-    .user_ctx = NULL
-  };
+// ===================
+// Sensor Data Sendi
+// ===================
 
-  if (httpd_start(&stream_httpd, &config) == ESP_OK) {
-    httpd_register_uri_handler(stream_httpd, &index_uri);
-  }
+
+void handleTextData() {
+  String json = "{\"sensor_left\": " + String(sensorLeft) + ", \"sensor_center\": " + String(sensorCenter) + ", \"sensor_right\": " + String(sensorRight) + "}";
+
+  textServer.send(200, "application/json", json);
 }
 
+// ===================
+// Motor Logic
+// ===================
+void stop() {
+  analogWrite(MOTOR_IN1, 0);
+  analogWrite(MOTOR_IN2, 0);
+  analogWrite(MOTOR_IN3, 0);
+  analogWrite(MOTOR_IN4, 0);
+  digitalWrite(STBY, LOW);
+  log("stop");
+}
 
+void goForward() {
+  analogWrite(MOTOR_IN1, 0);
+  analogWrite(MOTOR_IN2, MAX_SPEED);
+  analogWrite(MOTOR_IN3, 0);
+  analogWrite(MOTOR_IN4, MAX_SPEED);
+  digitalWrite(STBY, HIGH);
+  log("go");
+}
+
+void goBackwards() {
+  analogWrite(MOTOR_IN1, MAX_SPEED);
+  analogWrite(MOTOR_IN2, 0);
+  analogWrite(MOTOR_IN3, MAX_SPEED);
+  analogWrite(MOTOR_IN4, 0);
+  digitalWrite(STBY, HIGH);
+  log("backwards");
+}
+
+void goLeft(int speed = MAX_SPEED) {
+  analogWrite(MOTOR_IN1, MAX_SPEED);
+  analogWrite(MOTOR_IN2, 0);
+  analogWrite(MOTOR_IN3, 0);
+  analogWrite(MOTOR_IN4, MAX_SPEED);
+  digitalWrite(STBY, HIGH);
+  log("left");
+}
+
+void goRight(int speed = MAX_SPEED) {
+  analogWrite(MOTOR_IN1, 0);
+  analogWrite(MOTOR_IN2, MAX_SPEED);
+  analogWrite(MOTOR_IN3, MAX_SPEED);
+  analogWrite(MOTOR_IN4, 0);
+  digitalWrite(STBY, HIGH);
+  log("right");
+}
+
+void restart() {
+  ESP.restart();
+}
+
+void toggleSmartMode() {
+  autonomousMode = true;
+  Serial.println("Mode: AUTONOMOUS");
+}
+void toggleManualMode() {
+  autonomousMode = false;
+  stop();
+  Serial.println("Mode: MANUAL");
+}
+
+// ===================
+// WebSocket
+// ===================
 void assignCommands() {
-  commandMap["CONNECT_WIFI"] = connectToWifiNetwork;
-  commandMap["QUIT_WIFI"] = disconnectFromWifiNetwork;
-  commandMap["START_CAMERA"] = disconnectFromWifiNetwork;
-  commandMap["START_CAMERA_SERVER"] = startCameraServer;
-  commandMap["QUIT_CAMERA"] = disconnectFromWifiNetwork;
   commandMap["GO_FORWARD"] = goForward;
   commandMap["STOP"] = stop;
-  commandMap["GO_LEFT"] = goLeft;
-  commandMap["GO_RIGHT"] = goRight;
+  commandMap["GO_LEFT"] = []() {
+    goLeft();
+  };
+  commandMap["GO_RIGHT"] = []() {
+    goRight();
+  };
   commandMap["GO_BACKWARDS"] = goBackwards;
+  commandMap["RESTART"] = restart;
+  commandMap["SMART_MODE"] = toggleSmartMode;
+  commandMap["MANUAL_MODE"] = toggleManualMode;
 }
 
 void callEachCommand(std::string command) {
   auto it = commandMap.find(command);
-
   if (it != commandMap.end()) {
     it->second();
   } else {
-    Serial.print("Error: Command not found: ");
-    Serial.println(command.c_str());
+    log("Error: Command not found: " + String(command.c_str()));
   }
 }
 
-void webSocketEvent(WStype_t type, uint8_t* payload, size_t length) {
-
+void webSocketEvent(WStype_t type, uint8_t *payload, size_t length) {
   switch (type) {
     case WStype_DISCONNECTED:
-      Serial.printf("[WSc] Disconnected!\n");
+      Serial.println("[WSc] Disconnected!");
       break;
     case WStype_CONNECTED:
-      {
-        Serial.printf("[WSc] Connected to url: %s\n", payload);
-      }
+      Serial.printf("[WSc] Connected to url: %s\n", payload);
       break;
     case WStype_TEXT:
       {
-        std::string command(reinterpret_cast<const char*>(payload), length);
-
+        std::string command(reinterpret_cast<const char *>(payload), length);
+        Serial.print("Command: ");
+        Serial.println(command.c_str());
         callEachCommand(command);
       }
       break;
-    case WStype_BIN:
-      Serial.printf("[WSc] get binary length: %u\n", length);
-      break;
     case WStype_PING:
-      // pong will be send automatically
-      Serial.printf("[WSc] get ping\n");
+      Serial.println("[WSc] ping");
       break;
     case WStype_PONG:
-      // answer to a ping we send
-      Serial.printf("[WSc] get pong\n");
+      Serial.println("[WSc] pong");
+      break;
+    default:
       break;
   }
 }
 
-void connectToWifiNetwork() {
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
+void startCameraServer();
+
+
+// ===================
+// Sensors Distance
+// ===================
+
+
+long readDistance(int echoPin) {
+  digitalWrite(TRIG_PIN, LOW);
+  delayMicroseconds(2);
+  digitalWrite(TRIG_PIN, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIG_PIN, LOW);
+
+  long echo = pulseIn(echoPin, HIGH, 15000);
+  delay(30);
+
+  if (echo == 0) return 250;
+  return echo * 0.034 / 2;
+}
+
+// ===================
+// Autonomous
+// ===================
+void AUTONOMOUS() {
+  Serial.println("SMARTMODE");
+  long fwd = readDistance(ECHO_PIN_C);
+  sensorCenter = fwd;
+  delay(30);
+  long sideLeft = readDistance(ECHO_PIN_L);
+  sensorCenter = sideLeft;
+  delay(30);
+  long sideRight = readDistance(ECHO_PIN_R);
+  sensorCenter = sideRight;
+  delay(30);
+
+  log("F:" + String(fwd) + " L:" + String(sideLeft) + " R:" + String(sideRight));
+
+  if (fwd == 0) {
+    stop();
+    return;
   }
-  Serial.println("");
-  Serial.println("WiFi connected");
-  Serial.print(WiFi.localIP());
+
+  if (fwd > 40 && sideLeft > 15 && sideRight > 15) {
+    goForward();
+    return;
+  }
+
+  stop();
+  delay(500);
+  goBackwards();
+  delay(500);
+  stop();
+  goLeft(200);
+  delay(600);
+  stop();
+  delay(500);
+  long fwdScan1;
+  for (int i = 0; i < 2; i++) {
+    fwdScan1 = readDistance(ECHO_PIN_C);
+    delay(30);
+  }
+  long sideLeftScan1;
+  for (int i = 0; i < 2; i++) {
+    sideLeftScan1 = readDistance(ECHO_PIN_L);
+    delay(30);
+  }
+
+  long sideRightScan1;
+  for (int i = 0; i < 2; i++) {
+    sideRightScan1 = readDistance(ECHO_PIN_R);
+    delay(30);
+  }
+
+  Serial.println("Left side scan L:" + String(sideLeftScan1));
+  Serial.println("Left side scan C:" + String(fwdScan1));
+  Serial.println("Right side scan R:" + String(sideRightScan1));
+
+
+  // After left scan:
+  goRight(200);
+  delay(600);  // ← match the left delay to return to 0°
+  stop();
+  delay(1000);
+
+  goRight(200);
+  delay(600);
+  stop();
+  delay(200);
+  // take scan2 here
+  long fwdScan2;
+  for (int i = 0; i < 2; i++) {
+    fwdScan2 = readDistance(ECHO_PIN_C);
+    delay(30);
+  }
+  long sideLeftScan2;
+  for (int i = 0; i < 2; i++) {
+    sideLeftScan2 = readDistance(ECHO_PIN_L);
+    delay(30);
+  }
+
+  long sideRightScan2;
+  for (int i = 0; i < 2; i++) {
+    sideRightScan2 = readDistance(ECHO_PIN_R);
+    delay(30);
+  }
+
+  Serial.println("Left scan:" + String(sideLeftScan2));
+  Serial.println("Center scan:" + String(fwdScan2));
+  Serial.println("Right scan:" + String(sideRightScan2));
+
+  // Then return to center:
+  goLeft(200);
+  delay(600);
+  stop();
+
+  long distanceSum1 = (fwdScan1 + sideLeftScan1 + sideRightScan1);
+  long distanceSum2 = (fwdScan2 + sideLeftScan2 + sideRightScan2);
+
+  if (fwd >= fwdScan1 && fwd >= fwdScan2 && fwd > 40) {
+    goForward();
+  } else if (distanceSum1 >= distanceSum2 && distanceSum1 > 60) {
+    goLeft(200);  // left had more space → turn left
+    delay(600);
+    goForward();
+  } else if (distanceSum2 > distanceSum1 && distanceSum2 > 60) {
+    goRight(200);  // right had more space → turn right ← was missing!
+    delay(600);
+    goForward();
+  } else {
+    goBackwards();
+    delay(700);
+    stop();
+  }
 }
 
+// ===================
+// Rainbow LED
+// ===================
 
-void disconnectFromWifiNetwork() {
-  Serial.println("WiFi: Successfully disconnected.");
+
+void rainbowLED() {
+  strip.setPixelColor(0, strip.Color(255, 0, 0));
+  strip.show();
+  delay(200);
+
+  strip.setPixelColor(8, strip.Color(255, 0, 0));
+  strip.show();
+  delay(200);
+
+  strip.setPixelColor(1, strip.Color(0, 255, 0));
+  strip.show();
+  delay(200);
+
+  strip.setPixelColor(9, strip.Color(0, 255, 0));
+  strip.show();
+  delay(200);
+
+  strip.setPixelColor(2, strip.Color(0, 0, 255));
+  strip.show();
+  delay(200);
+
+  strip.setPixelColor(10, strip.Color(0, 0, 255));
+  strip.show();
+  delay(200);
+
+
+  strip.setPixelColor(3, strip.Color(255, 255, 0));
+  strip.show();
+  delay(200);
+
+  strip.setPixelColor(11, strip.Color(255, 255, 0));
+  strip.show();
+  delay(200);
+
+
+  strip.setPixelColor(4, strip.Color(0, 255, 255));
+  strip.show();
+  delay(200);
+
+  strip.setPixelColor(12, strip.Color(0, 255, 255));
+  strip.show();
+  delay(200);
+
+  strip.setPixelColor(5, strip.Color(255, 0, 255));
+  strip.show();
+  delay(200);
+
+  strip.setPixelColor(13, strip.Color(255, 0, 255));
+  strip.show();
+  delay(200);
+
+  strip.setPixelColor(6, strip.Color(255, 128, 0));
+  strip.show();
+  delay(200);
+
+  strip.setPixelColor(14, strip.Color(255, 128, 0));
+  strip.show();
+  delay(200);
+
+  strip.setPixelColor(7, strip.Color(255, 255, 255));
+  strip.show();
+  delay(200);
+
+
+  strip.setPixelColor(15, strip.Color(255, 255, 255));
+  strip.show();
+  delay(200);
+
+  strip.setPixelColor(7, strip.Color(0, 0, 0));
+  strip.show();
+  delay(200);
+
+
+  strip.setPixelColor(15, strip.Color(0, 0, 0));
+  strip.show();
+  delay(200);
+
+  strip.setPixelColor(6, strip.Color(0, 0, 0));
+  strip.show();
+  delay(200);
+
+  strip.setPixelColor(14, strip.Color(0, 0, 0));
+  strip.show();
+  delay(200);
+
+  strip.setPixelColor(13, strip.Color(0, 0, 0));
+  strip.show();
+  delay(200);
+
+  strip.setPixelColor(5, strip.Color(0, 0, 0));
+  strip.show();
+  delay(200);
+
+  strip.setPixelColor(12, strip.Color(0, 0, 0));
+  strip.show();
+  delay(200);
+
+  strip.setPixelColor(4, strip.Color(0, 0, 0));
+  strip.show();
+  delay(200);
+
+  strip.setPixelColor(11, strip.Color(0, 0, 0));
+  strip.show();
+  delay(200);
+
+  strip.setPixelColor(3, strip.Color(0, 0, 0));
+  strip.show();
+  delay(200);
+
+  strip.setPixelColor(10, strip.Color(0, 0, 0));
+  strip.show();
+  delay(200);
+
+  strip.setPixelColor(2, strip.Color(0, 0, 0));
+  strip.show();
+  delay(200);
+
+
+  strip.setPixelColor(9, strip.Color(0, 0, 0));
+  strip.show();
+  delay(200);
+
+  strip.setPixelColor(1, strip.Color(0, 0, 0));
+  strip.show();
+  delay(200);
+
+  strip.setPixelColor(8, strip.Color(0, 0, 0));
+  strip.show();
+  delay(200);
+
+  strip.setPixelColor(0, strip.Color(0, 0, 0));
+  strip.show();
+  delay(200);
 }
-
-
-
-void goForward() {
-  digitalWrite(STBY, HIGH);
-  analogWrite(MOTOR_IN1_IN2, MAX_SPEED);
-  analogWrite(MOTOR_IN3_IN4, MAX_SPEED);
-  Serial.println("go forward - slow");
-}
-
-void goBackwards() {
-  Serial.println("go back - slow");
-}
-
-void goLeft() {
-  // To pivot left: Right motor moves forward, left motor stays still
-  digitalWrite(STBY, HIGH);
-  analogWrite(MOTOR_IN1_IN2, MAX_SPEED);
-  analogWrite(MOTOR_IN3_IN4, 0);
-  Serial.println("pivoting left");
-}
-
-void goRight() {
-  // To pivot right: Left motor moves forward, right motor stays still
-  digitalWrite(STBY, HIGH);
-  analogWrite(MOTOR_IN1_IN2, 0);
-  analogWrite(MOTOR_IN3_IN4, MAX_SPEED);
-  Serial.println("pivoting right");
-}
-
-void stop() {
-analogWrite(MOTOR_IN1_IN2, 0);
-  analogWrite(MOTOR_IN3_IN4, 0);
-  Serial.println("stop");
-}
-
+// ===================
+// Setup
+// ===================
 void setup() {
   Serial.begin(115200);
-  pinMode(MOTOR_IN1_IN2, OUTPUT);
-  pinMode(MOTOR_IN3_IN4, OUTPUT);
+  Serial.setDebugOutput(true);
 
-  pinMode(ULTRASOUND_SENSOR_TRIGGER, OUTPUT);
-  pinMode(ULTRASOUND_SENSOR_ECHO, INPUT);
-
-
-  assignCommands();
-  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);  //disable brownout detector
-
-  Serial.setDebugOutput(false);
+  pinMode(MOTOR_IN1, OUTPUT);
+  pinMode(MOTOR_IN2, OUTPUT);
+  pinMode(MOTOR_IN3, OUTPUT);
+  pinMode(MOTOR_IN4, OUTPUT);
+  pinMode(STBY, OUTPUT);
+  pinMode(TRIG_PIN, OUTPUT);
+  pinMode(ECHO_PIN_L, INPUT);
+  pinMode(ECHO_PIN_C, INPUT);
+  pinMode(ECHO_PIN_R, INPUT);
 
   camera_config_t config;
   config.ledc_channel = LEDC_CHANNEL_0;
@@ -367,97 +509,74 @@ void setup() {
   config.pin_sccb_scl = SIOC_GPIO_NUM;
   config.pin_pwdn = PWDN_GPIO_NUM;
   config.pin_reset = RESET_GPIO_NUM;
-  config.xclk_freq_hz = 20000000;
+  config.xclk_freq_hz = 10000000;
+  config.frame_size = FRAMESIZE_SVGA;
   config.pixel_format = PIXFORMAT_JPEG;
+  config.grab_mode = CAMERA_GRAB_WHEN_EMPTY;
+  config.fb_location = CAMERA_FB_IN_PSRAM;
+  config.jpeg_quality = 12;
+  config.fb_count = 1;
 
   if (psramFound()) {
-    config.frame_size = FRAMESIZE_VGA;
     config.jpeg_quality = 10;
     config.fb_count = 2;
-    Serial.println("FRAMESIZE_VGA");
+    config.grab_mode = CAMERA_GRAB_LATEST;
   } else {
-    config.frame_size = FRAMESIZE_SVGA;
-    config.jpeg_quality = 12;
-    config.fb_count = 1;
-    Serial.println("FRAMESIZE_SVGA");
+    config.frame_size = FRAMESIZE_HVGA;
+    config.fb_location = CAMERA_FB_IN_DRAM;
   }
 
-  // Camera init
   esp_err_t err = esp_camera_init(&config);
   if (err != ESP_OK) {
-    Serial.printf("Camera init failed with error 0x%x", err);
+    Serial.printf("Camera init failed: 0x%x\n", err);
     return;
   }
-  // Wi-Fi connection
+
+  sensor_t *s = esp_camera_sensor_get();
+  s->set_vflip(s, 1);
+  s->set_brightness(s, 1);
+  s->set_saturation(s, -1);
+
   WiFi.begin(ssid, password);
+  WiFi.setSleep(false);
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
   }
-  Serial.println("");
-  Serial.println("WiFi connected");
+  Serial.println("\nWiFi connected: " + WiFi.localIP().toString());
 
-  webSocket.begin(serverIp, port, "/commands");
+  startCameraServer();
+
+  textServer.on("/data", handleTextData);
+  textServer.begin();
+
+  Serial.println("Text Server started on port 8080");
+
+  webSocket.begin(serverIp, port, "/esp-32");
   webSocket.onEvent(webSocketEvent);
   webSocket.setReconnectInterval(5000);
   webSocket.enableHeartbeat(15000, 3000, 2);
 
-  Serial.print("Camera Stream Ready! Go to: http://");
+  assignCommands();
+  Serial.println("Ready!");
 
-  Serial.println(WiFi.localIP());
-
-
-  isWIFIConnected = true;
-  startCameraServer();
-  pinMode(STBY, OUTPUT);
-  digitalWrite(STBY, LOW);
+  strip.begin();
+  strip.show();
+  delay(200);
+  strip.setBrightness(50);
 }
 
+// ===================
+// Loop
+// ===================
 void loop() {
-  webSocket.loop();  // MUst run constantly for handshake
-
-  // if (webSocket.isConnected()) {
-  //   camera_fb_t* fb = esp_camera_fb_get();
-  //   if (!fb) {
-  //     Serial.println("Camera capture failed");
-  //     return;
-  //   }
-
-  //   bool success = webSocket.sendBIN(fb->buf, fb->len);
-  //   if (success) {
-  //     Serial.println("Image sent successfully");
-  //   } else {
-  //     Serial.println("Send failed");
-  //   }
-
-  //   esp_camera_fb_return(fb);
-  //   delay(800);  // Small pause to prevent network congestion
-  // }
-  // else {
-  //   // Non-blocking status report
-  //   static unsigned long lastCheck = 0;
-  //   if (millis() - lastCheck > 2000) {
-  //     Serial.println("Waiting for WebSocket connection...");
-  //     lastCheck = millis();
-  //   }
-  // }
-
-  digitalWrite(ULTRASOUND_SENSOR_TRIGGER, LOW);
-  delayMicroseconds(2);
-  digitalWrite(ULTRASOUND_SENSOR_TRIGGER, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(ULTRASOUND_SENSOR_TRIGGER, LOW);
-
-  duration = pulseIn(ULTRASOUND_SENSOR_ECHO, HIGH);
-  distance = (duration * 0.034) / 2;  // Calculate distance in cm
-
-  Serial.print("Distance: ");
-  Serial.println(distance);
-  delay(500);
-  delay(100);
-  // analogWrite(MOTOR_IN1, MAX_SPEED);
-  // analogWrite(MOTOR_IN2, 0);
-  // analogWrite(MOTOR_IN3, MAX_SPEED);
-  // analogWrite(MOTOR_IN4, 0);
-  // digitalWrite(STBY, HIGH);
+  webSocket.loop();
+  if (autonomousMode) {
+    if (millis() - lastAutonomousTime >= AUTONOMOUS_INTERVAL) {
+      lastAutonomousTime = millis();
+      AUTONOMOUS();
+    }
+  }
+  //rainbowLED();
+  textServer.handleClient();
 }

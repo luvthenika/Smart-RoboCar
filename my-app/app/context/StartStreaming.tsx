@@ -20,20 +20,20 @@ export const StreamProvider = ({ children }: { children: ReactNode }) => {
     const connect = () => {
         if (socketRef.current) return;
 
-        setError(false);
-        setLoading(true);
-        setClosed(false);
 
         const ws = new WebSocket('ws://192.168.3.5:8888/video?device=ios&id=user123');
         ws.binaryType = 'arraybuffer';
-        socketRef.current = ws; // set ref early
+        socketRef.current = ws;
 
         ws.onopen = () => {
             console.log("WebSocket connected");
-            setLoading(false); // now consumers know stream is ready
+            setLoading(false);
+            setError(false);
+            setClosed(false);
         };
 
         ws.onmessage = (event) => {
+            setLoading(false);
             console.log('message received', typeof event.data, event.data?.byteLength);
             const base64data = Buffer.from(event.data).toString('base64');
             setFrameUrl(`data:image/jpeg;base64,${base64data}`);
@@ -59,7 +59,7 @@ export const StreamProvider = ({ children }: { children: ReactNode }) => {
         if (socketRef.current) {
             socketRef.current.close();
             socketRef.current = null;
-            setFrameUrl(''); // no revokeObjectURL needed for data: URIs
+            setFrameUrl('');
         }
     };
     return (
