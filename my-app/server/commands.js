@@ -38,7 +38,7 @@ wss.on("connection", (ws, req) => {
             case "GO_LEFT":
             case "GO_RIGHT":
             case "GO_FORWARD":
-            case "GO_BACKWARD":
+            case "GO_BACKWARDS":
             case "SMART_MODE":
             case "MANUAL_MODE":
             case "STOP":

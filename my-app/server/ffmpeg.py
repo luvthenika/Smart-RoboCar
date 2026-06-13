@@ -6,7 +6,7 @@ import numpy as np
 import websocket
 from pyzbar.pyzbar import decode
 
-CMD_URL = "ws://192.168.3.5:8880/esp-32?role=python"
+CMD_URL = "ws://0.0.0.0:8880/esp-32?role=python"
 
 # WebSocket підключення
 ws_client = None

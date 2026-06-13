@@ -22,8 +22,7 @@ export const styles = StyleSheet.create({
     },
     mainImage: {
         width: 550,
-        height: '100%',
-        transform: [{ rotate: '180deg' }],
+        height: '100%'
     },
     button: {
         width: 200,

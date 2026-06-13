@@ -43,6 +43,7 @@ wss.on("connection", (ws: WebSocket, req: IncomingMessage) => {
             const start = buffer.indexOf(Buffer.from([0xff, 0xd8]));
             const end = buffer.indexOf(Buffer.from([0xff, 0xd9]), start);
 
+
             if (start !== -1 && end !== -1) {
                 const frame = buffer.slice(start, end + 2);
                 buffer = buffer.slice(end + 2);

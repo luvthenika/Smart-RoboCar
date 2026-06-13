@@ -21,7 +21,7 @@ export const StreamProvider = ({ children }: { children: ReactNode }) => {
         if (socketRef.current) return;
 
 
-        const ws = new WebSocket('ws://192.168.3.5:8888/video?device=ios&id=user123');
+        const ws = new WebSocket('ws://0.0.0.0:8888/video?device=ios&id=user123');
         ws.binaryType = 'arraybuffer';
         socketRef.current = ws;
 
@@ -34,7 +34,6 @@ export const StreamProvider = ({ children }: { children: ReactNode }) => {
 
         ws.onmessage = (event) => {
             setLoading(false);
-            console.log('message received', typeof event.data, event.data?.byteLength);
             const base64data = Buffer.from(event.data).toString('base64');
             setFrameUrl(`data:image/jpeg;base64,${base64data}`);
         };

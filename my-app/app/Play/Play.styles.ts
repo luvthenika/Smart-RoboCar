@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     mainImage: {
         width: 700,
         height: 500,
-        transform: [{ rotate: '-90deg' }],
+        transform: [{ rotate: '90deg' }],
     },
     pythonMessage: {
         position: 'absolute',

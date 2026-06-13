@@ -40,7 +40,7 @@ export default function Play() {
     const [score, setScore] = useState<Set<string>>(new Set());
 
     useEffect(() => {
-        ws.current = new WebSocket('ws://192.168.3.5:8880/esp-32?role=client');
+        ws.current = new WebSocket('ws://0.0.0.0:8880/esp-32?role=client');
 
         ws.current.onopen = () => console.log('WebSocket connected');
         ws.current.onmessage = (event) => {
@@ -101,7 +101,7 @@ export default function Play() {
                         <Image source={forwardButton.imageSource} style={styles.buttonImage} contentFit="contain" />
                     </Pressable>
 
-                    <Pressable {...backwardButton.pressableProps} style={styles.buttonBackward} onPress={() => sendCommand("GO_BACKWARD")}>
+                    <Pressable {...backwardButton.pressableProps} style={styles.buttonBackward} onPress={() => sendCommand("GO_BACKWARDS")}>
                         <Image source={backwardButton.imageSource} style={styles.buttonImage} contentFit="contain" />
                     </Pressable>
                 </View>

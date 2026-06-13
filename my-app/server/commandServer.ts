@@ -1,7 +1,7 @@
 import express from "express";
 import { createServer } from "node:http";
 
-const ip = "192.168.3.5";
+const ip = "0.0.0.0";
 const port = 8880;
 
 const app = express();

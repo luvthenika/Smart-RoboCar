@@ -31,7 +31,7 @@ export default function PreviewCamera() {
             return;
         }
 
-        const cmdWs = new WebSocket('ws://192.168.3.5:8880/commands');
+        const cmdWs = new WebSocket('ws://0.0.0.0:8880/commands');
         cmdWs.onopen = () => {
             console.log("Command WebSocket connected");
             cmdWs.send("RESTART");

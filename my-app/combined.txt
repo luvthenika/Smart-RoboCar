@@ -1,0 +1,1653 @@
+﻿// === C:\Users\vvvve\OneDrive\robot\my-app\.expo\types\router.d.ts ===
+/* eslint-disable */
+import * as Router from 'expo-router';
+
+export * from 'expo-router';
+
+declare module 'expo-router' {
+  export namespace ExpoRouter {
+    export interface __routes<T extends string | object = string> {
+      hrefInputParams: { pathname: Router.RelativePathString, params?: Router.UnknownInputParams } | { pathname: Router.ExternalPathString, params?: Router.UnknownInputParams } | { pathname: `/`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605094825`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605095018`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605095152`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605095312`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605095930`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605100353`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605100608`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605100609`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605105200`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605122608`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605122654`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605122836`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605122837`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605122901`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605122902`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605123006`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605123015`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605123016`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605123126`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605123127`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605125504`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605131022`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605131244`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605131732`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605132909`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605132936`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605133019`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605133019`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play.styles_20260605133019`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605133122`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605133136`; params?: Router.UnknownInputParams; } | { pathname: `/components/Score/Score`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605135109`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605135110`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605135142`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/components/Score/Score_20260605135217`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605135531`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605135624`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/components/Score/Score_20260605135718`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605135752`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605135813`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605135943`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605140005`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/components/Score/Score_20260605140048`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/components/Score/Score_20260605140153`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/components/Score/Score_20260605140156`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605140426`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605140550`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605140620`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605140708`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/components/Score/Score_20260605140155`; params?: Router.UnknownInputParams; } | { pathname: `/_sitemap`; params?: Router.UnknownInputParams; } | { pathname: `/components/ErrorModal/ErrorModal.styles`; params?: Router.UnknownInputParams; } | { pathname: `/components/ErrorModal/ErrorModal`; params?: Router.UnknownInputParams; } | { pathname: `/components/HealthBar/Heathbar`; params?: Router.UnknownInputParams; } | { pathname: `/components/LoadingBar/LoadingBar`; params?: Router.UnknownInputParams; } | { pathname: `/context/StartStreaming`; params?: Router.UnknownInputParams; } | { pathname: `/hooks/usePressableImage`; params?: Router.UnknownInputParams; } | { pathname: `/Play/Play.styles`; params?: Router.UnknownInputParams; } | { pathname: `/Play/Play`; params?: Router.UnknownInputParams; } | { pathname: `/PreviewCamera/PreviewCamera.styles`; params?: Router.UnknownInputParams; } | { pathname: `/PreviewCamera/PreviewCamera`; params?: Router.UnknownInputParams; } | { pathname: `/StartConnect/StartConnect.styles`; params?: Router.UnknownInputParams; } | { pathname: `/StartConnect/StartConnect`; params?: Router.UnknownInputParams; };
+      hrefOutputParams: { pathname: Router.RelativePathString, params?: Router.UnknownOutputParams } | { pathname: Router.ExternalPathString, params?: Router.UnknownOutputParams } | { pathname: `/`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605094825`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605095018`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605095152`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605095312`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605095930`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605100353`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605100608`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605100609`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605105200`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605122608`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605122654`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605122836`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605122837`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605122901`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605122902`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605123006`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605123015`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605123016`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605123126`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605123127`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605125504`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605131022`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605131244`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605131732`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/Play/Play_20260605132909`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605132936`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/Play/Play_20260605133019`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605133019`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/Play/Play.styles_20260605133019`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605133122`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605133136`; params?: Router.UnknownOutputParams; } | { pathname: `/components/Score/Score`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/Play/Play_20260605135109`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/Play/Play_20260605135110`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/Play/Play_20260605135142`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/components/Score/Score_20260605135217`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/Play/Play_20260605135531`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/Play/Play_20260605135624`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/components/Score/Score_20260605135718`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/Play/Play_20260605135752`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/Play/Play_20260605135813`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/Play/Play_20260605135943`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/Play/Play_20260605140005`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/components/Score/Score_20260605140048`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/components/Score/Score_20260605140153`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/components/Score/Score_20260605140156`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/Play/Play_20260605140426`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/Play/Play_20260605140550`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/Play/Play_20260605140620`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/Play/Play_20260605140708`; params?: Router.UnknownOutputParams; } | { pathname: `/../.history/app/components/Score/Score_20260605140155`; params?: Router.UnknownOutputParams; } | { pathname: `/_sitemap`; params?: Router.UnknownOutputParams; } | { pathname: `/components/ErrorModal/ErrorModal.styles`; params?: Router.UnknownOutputParams; } | { pathname: `/components/ErrorModal/ErrorModal`; params?: Router.UnknownOutputParams; } | { pathname: `/components/HealthBar/Heathbar`; params?: Router.UnknownOutputParams; } | { pathname: `/components/LoadingBar/LoadingBar`; params?: Router.UnknownOutputParams; } | { pathname: `/context/StartStreaming`; params?: Router.UnknownOutputParams; } | { pathname: `/hooks/usePressableImage`; params?: Router.UnknownOutputParams; } | { pathname: `/Play/Play.styles`; params?: Router.UnknownOutputParams; } | { pathname: `/Play/Play`; params?: Router.UnknownOutputParams; } | { pathname: `/PreviewCamera/PreviewCamera.styles`; params?: Router.UnknownOutputParams; } | { pathname: `/PreviewCamera/PreviewCamera`; params?: Router.UnknownOutputParams; } | { pathname: `/StartConnect/StartConnect.styles`; params?: Router.UnknownOutputParams; } | { pathname: `/StartConnect/StartConnect`; params?: Router.UnknownOutputParams; };
+      href: Router.RelativePathString | Router.ExternalPathString | `/${`?${string}` | `#${string}` | ''}` | `/../.history/server/FFMPEG/videoProcessor_20260605094825${`?${string}` | `#${string}` | ''}` | `/../.history/server/FFMPEG/videoProcessor_20260605095018${`?${string}` | `#${string}` | ''}` | `/../.history/server/FFMPEG/videoProcessor_20260605095152${`?${string}` | `#${string}` | ''}` | `/../.history/server/FFMPEG/videoProcessor_20260605095312${`?${string}` | `#${string}` | ''}` | `/../.history/server/FFMPEG/videoProcessor_20260605095930${`?${string}` | `#${string}` | ''}` | `/../.history/server/FFMPEG/videoProcessor_20260605100353${`?${string}` | `#${string}` | ''}` | `/../.history/server/FFMPEG/videoProcessor_20260605100608${`?${string}` | `#${string}` | ''}` | `/../.history/server/FFMPEG/videoProcessor_20260605100609${`?${string}` | `#${string}` | ''}` | `/../.history/server/FFMPEG/videoProcessor_20260605105200${`?${string}` | `#${string}` | ''}` | `/../.history/app/context/StartStreaming_20260605122608${`?${string}` | `#${string}` | ''}` | `/../.history/app/context/StartStreaming_20260605122654${`?${string}` | `#${string}` | ''}` | `/../.history/app/context/StartStreaming_20260605122836${`?${string}` | `#${string}` | ''}` | `/../.history/app/context/StartStreaming_20260605122837${`?${string}` | `#${string}` | ''}` | `/../.history/app/context/StartStreaming_20260605122901${`?${string}` | `#${string}` | ''}` | `/../.history/app/context/StartStreaming_20260605122902${`?${string}` | `#${string}` | ''}` | `/../.history/app/context/StartStreaming_20260605123006${`?${string}` | `#${string}` | ''}` | `/../.history/app/context/StartStreaming_20260605123015${`?${string}` | `#${string}` | ''}` | `/../.history/app/context/StartStreaming_20260605123016${`?${string}` | `#${string}` | ''}` | `/../.history/app/context/StartStreaming_20260605123126${`?${string}` | `#${string}` | ''}` | `/../.history/app/context/StartStreaming_20260605123127${`?${string}` | `#${string}` | ''}` | `/../.history/app/context/StartStreaming_20260605125504${`?${string}` | `#${string}` | ''}` | `/../.history/app/context/StartStreaming_20260605131022${`?${string}` | `#${string}` | ''}` | `/../.history/app/context/StartStreaming_20260605131244${`?${string}` | `#${string}` | ''}` | `/../.history/app/context/StartStreaming_20260605131732${`?${string}` | `#${string}` | ''}` | `/../.history/app/Play/Play_20260605132909${`?${string}` | `#${string}` | ''}` | `/../.history/app/context/StartStreaming_20260605132936${`?${string}` | `#${string}` | ''}` | `/../.history/app/Play/Play_20260605133019${`?${string}` | `#${string}` | ''}` | `/../.history/app/context/StartStreaming_20260605133019${`?${string}` | `#${string}` | ''}` | `/../.history/app/Play/Play.styles_20260605133019${`?${string}` | `#${string}` | ''}` | `/../.history/app/context/StartStreaming_20260605133122${`?${string}` | `#${string}` | ''}` | `/../.history/app/context/StartStreaming_20260605133136${`?${string}` | `#${string}` | ''}` | `/components/Score/Score${`?${string}` | `#${string}` | ''}` | `/../.history/app/Play/Play_20260605135109${`?${string}` | `#${string}` | ''}` | `/../.history/app/Play/Play_20260605135110${`?${string}` | `#${string}` | ''}` | `/../.history/app/Play/Play_20260605135142${`?${string}` | `#${string}` | ''}` | `/../.history/app/components/Score/Score_20260605135217${`?${string}` | `#${string}` | ''}` | `/../.history/app/Play/Play_20260605135531${`?${string}` | `#${string}` | ''}` | `/../.history/app/Play/Play_20260605135624${`?${string}` | `#${string}` | ''}` | `/../.history/app/components/Score/Score_20260605135718${`?${string}` | `#${string}` | ''}` | `/../.history/app/Play/Play_20260605135752${`?${string}` | `#${string}` | ''}` | `/../.history/app/Play/Play_20260605135813${`?${string}` | `#${string}` | ''}` | `/../.history/app/Play/Play_20260605135943${`?${string}` | `#${string}` | ''}` | `/../.history/app/Play/Play_20260605140005${`?${string}` | `#${string}` | ''}` | `/../.history/app/components/Score/Score_20260605140048${`?${string}` | `#${string}` | ''}` | `/../.history/app/components/Score/Score_20260605140153${`?${string}` | `#${string}` | ''}` | `/../.history/app/components/Score/Score_20260605140156${`?${string}` | `#${string}` | ''}` | `/../.history/app/Play/Play_20260605140426${`?${string}` | `#${string}` | ''}` | `/../.history/app/Play/Play_20260605140550${`?${string}` | `#${string}` | ''}` | `/../.history/app/Play/Play_20260605140620${`?${string}` | `#${string}` | ''}` | `/../.history/app/Play/Play_20260605140708${`?${string}` | `#${string}` | ''}` | `/../.history/app/components/Score/Score_20260605140155${`?${string}` | `#${string}` | ''}` | `/_sitemap${`?${string}` | `#${string}` | ''}` | `/components/ErrorModal/ErrorModal.styles${`?${string}` | `#${string}` | ''}` | `/components/ErrorModal/ErrorModal${`?${string}` | `#${string}` | ''}` | `/components/HealthBar/Heathbar${`?${string}` | `#${string}` | ''}` | `/components/LoadingBar/LoadingBar${`?${string}` | `#${string}` | ''}` | `/context/StartStreaming${`?${string}` | `#${string}` | ''}` | `/hooks/usePressableImage${`?${string}` | `#${string}` | ''}` | `/Play/Play.styles${`?${string}` | `#${string}` | ''}` | `/Play/Play${`?${string}` | `#${string}` | ''}` | `/PreviewCamera/PreviewCamera.styles${`?${string}` | `#${string}` | ''}` | `/PreviewCamera/PreviewCamera${`?${string}` | `#${string}` | ''}` | `/StartConnect/StartConnect.styles${`?${string}` | `#${string}` | ''}` | `/StartConnect/StartConnect${`?${string}` | `#${string}` | ''}` | { pathname: Router.RelativePathString, params?: Router.UnknownInputParams } | { pathname: Router.ExternalPathString, params?: Router.UnknownInputParams } | { pathname: `/`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605094825`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605095018`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605095152`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605095312`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605095930`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605100353`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605100608`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605100609`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/server/FFMPEG/videoProcessor_20260605105200`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605122608`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605122654`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605122836`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605122837`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605122901`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605122902`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605123006`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605123015`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605123016`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605123126`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605123127`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605125504`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605131022`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605131244`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605131732`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605132909`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605132936`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605133019`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605133019`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play.styles_20260605133019`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605133122`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/context/StartStreaming_20260605133136`; params?: Router.UnknownInputParams; } | { pathname: `/components/Score/Score`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605135109`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605135110`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605135142`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/components/Score/Score_20260605135217`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605135531`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605135624`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/components/Score/Score_20260605135718`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605135752`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605135813`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605135943`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605140005`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/components/Score/Score_20260605140048`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/components/Score/Score_20260605140153`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/components/Score/Score_20260605140156`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605140426`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605140550`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605140620`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/Play/Play_20260605140708`; params?: Router.UnknownInputParams; } | { pathname: `/../.history/app/components/Score/Score_20260605140155`; params?: Router.UnknownInputParams; } | { pathname: `/_sitemap`; params?: Router.UnknownInputParams; } | { pathname: `/components/ErrorModal/ErrorModal.styles`; params?: Router.UnknownInputParams; } | { pathname: `/components/ErrorModal/ErrorModal`; params?: Router.UnknownInputParams; } | { pathname: `/components/HealthBar/Heathbar`; params?: Router.UnknownInputParams; } | { pathname: `/components/LoadingBar/LoadingBar`; params?: Router.UnknownInputParams; } | { pathname: `/context/StartStreaming`; params?: Router.UnknownInputParams; } | { pathname: `/hooks/usePressableImage`; params?: Router.UnknownInputParams; } | { pathname: `/Play/Play.styles`; params?: Router.UnknownInputParams; } | { pathname: `/Play/Play`; params?: Router.UnknownInputParams; } | { pathname: `/PreviewCamera/PreviewCamera.styles`; params?: Router.UnknownInputParams; } | { pathname: `/PreviewCamera/PreviewCamera`; params?: Router.UnknownInputParams; } | { pathname: `/StartConnect/StartConnect.styles`; params?: Router.UnknownInputParams; } | { pathname: `/StartConnect/StartConnect`; params?: Router.UnknownInputParams; };
+    }
+  }
+}
+// === C:\Users\vvvve\OneDrive\robot\my-app\app\components\ErrorModal\ErrorModal.styles.ts ===
+// === C:\Users\vvvve\OneDrive\robot\my-app\app\components\ErrorModal\ErrorModal.tsx ===
+import { useFonts } from 'expo-font';
+import React, { useState } from 'react';
+import {
+    Modal,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View,
+} from 'react-native';
+
+interface RetroButtonProps {
+    title: string;
+    onPress: () => void;
+    disabled?: boolean;
+}
+interface ErrorModalProps {
+    onReload?: () => void;
+}
+const RetroButton = ({ title, onPress, disabled }: RetroButtonProps) => {
+    return (
+        <TouchableOpacity
+            onPress={onPress}
+            disabled={disabled}
+            style={[styles.retroButton, disabled && styles.retroButtonDisabled]}
+        >
+            <Text style={[styles.fontPixel, styles.retroButtonText, disabled && styles.disabledText]}>
+                {title}
+            </Text>
+        </TouchableOpacity>
+    );
+};
+
+const ErrorModal = ({ onReload }: ErrorModalProps) => {
+    const [modalVisible, setModalVisible] = useState(true);
+
+    const [loaded, errorFont] = useFonts({
+        PixelifySans: require("../../../assets/fonts/Pixelify_Sans/static/PixelifySans-Regular.ttf"),
+    });
+
+    const closeModal = () => {
+        setModalVisible(false);
+    };
+
+    if (!loaded) {
+        return null;
+    }
+
+    return (
+        <View style={styles.container}>
+            <Modal
+                animationType="fade"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={closeModal}
+            >
+                <View style={styles.centeredView}>
+                    <View style={styles.stickerBorder}>
+                        <View style={styles.window}>
+                            <View style={styles.titleBar}>
+                                <Text style={[styles.fontPixel, styles.titleText]}>System Error</Text>
+
+                                <TouchableOpacity onPress={closeModal} style={styles.closeBtn}>
+                                    <Text style={[styles.fontPixel, styles.closeBtnText]}>x</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.windowBody}>
+                                <View style={styles.contentRow}>
+
+                                    <View style={styles.pixelIconContainer}>
+                                        <View style={styles.pixelIconVertical} />
+                                        <View style={styles.pixelIconHorizontal}>
+                                            <Text style={[styles.fontPixel, styles.errorIconText]}>x</Text>
+                                        </View>
+                                        <View style={styles.pixelIconShadow} />
+                                    </View>
+
+                                    <Text style={[styles.fontPixel, styles.messageText]}>
+                                        Websocket Error! Try reconnecting
+                                    </Text>
+                                </View>
+
+                                <View style={styles.buttonContainer}>
+                                    <RetroButton title="Cancel" onPress={closeModal} />
+                                    <RetroButton title="Reload" onPress={() => {
+                                        onReload?.();
+                                        closeModal();
+                                    }} />
+                                </View>
+                            </View>
+                        </View>
+
+                    </View>
+                </View>
+            </Modal>
+        </View>
+    );
+};
+
+const styles = StyleSheet.create({
+    fontPixel: {
+        fontFamily: 'PixelifySans',
+    },
+
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#f2f2f2',
+    },
+    openBtn: {
+        padding: 15,
+        backgroundColor: '#333',
+        borderWidth: 2,
+        borderColor: '#000',
+    },
+    openBtnText: {
+        color: '#fff',
+        fontSize: 16,
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    },
+    stickerBorder: {
+        backgroundColor: '#FFFFFF',
+        padding: 4,
+        borderRadius: 8,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.15,
+        shadowRadius: 10,
+        elevation: 10,
+    },
+    window: {
+        width: 320,
+        borderWidth: 2,
+        borderColor: '#f49ac1',
+        backgroundColor: '#eae4e4',
+        borderRadius: 0,
+    },
+    titleBar: {
+        backgroundColor: '#fca7da',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingVertical: 4,
+        paddingHorizontal: 8,
+    },
+    titleText: {
+        color: '#FFFFFF',
+        fontSize: 18,
+        textShadowColor: '#000',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 0,
+        letterSpacing: 1,
+    },
+    closeBtn: {
+        backgroundColor: '#8a8a8a',
+        width: 22,
+        height: 22,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderTopWidth: 2,
+        borderLeftWidth: 2,
+        borderBottomWidth: 2,
+        borderRightWidth: 2,
+        borderTopColor: '#e0e0e0',
+        borderLeftColor: '#e0e0e0',
+        borderBottomColor: '#333333',
+        borderRightColor: '#333333',
+        borderRadius: 0,
+    },
+    closeBtnText: {
+        color: '#e0e0e0',
+        fontSize: 14,
+        lineHeight: 16,
+        marginBottom: 2,
+    },
+    windowBody: {
+        padding: 20,
+    },
+    contentRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 25,
+    },
+
+    pixelIconContainer: {
+        width: 28,
+        height: 28,
+        marginRight: 15,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    pixelIconVertical: {
+        position: 'absolute',
+        backgroundColor: '#e50000',
+        width: 16,
+        height: 28,
+        zIndex: 2,
+    },
+    pixelIconHorizontal: {
+        position: 'absolute',
+        backgroundColor: '#e50000',
+        width: 28,
+        height: 16,
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: 3,
+    },
+    pixelIconShadow: {
+        position: 'absolute',
+        backgroundColor: 'rgba(0,0,0,0.3)',
+        width: 28,
+        height: 28,
+        top: 2,
+        left: 2,
+        zIndex: 1,
+    },
+    errorIconText: {
+        color: '#FFFFFF',
+        fontSize: 22,
+        lineHeight: 22,
+        marginBottom: 2,
+        textShadowColor: '#000',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 0,
+    },
+    messageText: {
+        flex: 1,
+        color: '#000000',
+        fontSize: 14,
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        paddingHorizontal: 5,
+    },
+    retroButton: {
+        backgroundColor: '#eaddcd',
+        paddingVertical: 6,
+        paddingHorizontal: 16,
+        borderTopWidth: 2,
+        borderLeftWidth: 2,
+        borderBottomWidth: 2,
+        borderRightWidth: 2,
+        borderTopColor: '#ffffff',
+        borderLeftColor: '#ffffff',
+        borderBottomColor: '#000000',
+        borderRightColor: '#000000',
+        borderRadius: 0,
+    },
+    retroButtonDisabled: {
+        borderTopColor: '#d3cfc1',
+        borderLeftColor: '#d3cfc1',
+        borderBottomColor: '#a09d94',
+        borderRightColor: '#a09d94',
+    },
+    retroButtonText: {
+        color: '#000',
+        fontSize: 14,
+    },
+    disabledText: {
+        color: '#a09d94',
+    },
+});
+
+export default ErrorModal;
+// === C:\Users\vvvve\OneDrive\robot\my-app\app\components\HealthBar\Heathbar.tsx ===
+import { StyleSheet, View } from 'react-native';
+import { Image } from 'expo-image';
+
+type HealthBarProps = {
+    hearts?: number;
+};
+
+export default function HealthBar({ hearts = 5 }: HealthBarProps) {
+    const heartFull = require('../../../assets/images/heart_full.svg');
+
+    return (
+        <View style={styles.wrapper}>
+            <View style={styles.row}>
+                {Array.from({ length: hearts }).map((_, index) => (
+                    <Image
+                        key={index}
+                        source={heartFull}
+                        style={styles.heart}
+                        contentFit="contain"
+                    />
+                ))}
+            </View>
+        </View>
+    );
+}
+
+const styles = StyleSheet.create({
+    wrapper: {
+        zIndex: 10,
+        transform: [{ rotate: '90deg' }],
+        position: 'absolute',
+        bottom: 120,
+        left: 180,
+
+    },
+    row: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 8,
+    },
+    heart: {
+        width: 40,
+        height: 40,
+    },
+});
+// === C:\Users\vvvve\OneDrive\robot\my-app\app\components\LoadingBar\LoadingBar.tsx ===
+import React, { useEffect, useRef } from 'react';
+import { Animated, View } from 'react-native';
+import Svg, { ClipPath, Defs, G, Rect, Use } from 'react-native-svg';
+
+// 1. Create an animated version of the SVG Rect
+const AnimatedRect = Animated.createAnimatedComponent(Rect);
+
+export default function LoadingBar() {
+    // 2. Initialize our animation value (starting width is 0)
+    const maskWidth = useRef(new Animated.Value(0)).current;
+
+    // 3. Set up the animation loop
+    useEffect(() => {
+        Animated.loop(
+            Animated.timing(maskWidth, {
+                toValue: 555, // The full width of the SVG
+                duration: 2500, // 2.5 seconds
+                useNativeDriver: false, // Must be false because we are animating an SVG attribute, not a UI View
+            })
+        ).start();
+    }, [maskWidth]);
+
+    return (
+        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+            <Svg width="300" height="50" viewBox="0 0 555 135" fill="none">
+                <Defs>
+                    {/* Animated mask that reveals the bright layer */}
+                    <ClipPath id="loading-mask">
+                        <AnimatedRect x="0" y="0" width={maskWidth} height="135" />
+                    </ClipPath>
+
+                    {/* Group containing your pixel art */}
+                    <G id="loader-art">
+                        {/* The background fill that completes the right side */}
+                        <Rect x="195" y="45" width="345" height="60" fill="#F99ECF" />
+
+                        {/* Your original pixels */}
+                        <Rect x="195" y="45" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="210" y="45" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="210" y="60" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="195" y="60" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="210" y="75" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="195" y="75" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="180" y="75" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="225" y="45" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="225" y="60" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="225" y="75" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="240" y="45" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="240" y="60" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="240" y="75" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="255" y="45" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="255" y="60" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="255" y="75" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="270" y="45" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="270" y="60" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="270" y="75" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="285" y="45" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="285" y="60" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="285" y="75" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="300" y="45" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="300" y="60" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="300" y="75" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="315" y="45" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="315" y="60" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="315" y="75" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="330" y="45" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="345" y="45" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="345" y="60" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="360" y="60" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="375" y="60" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="390" y="60" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="375" y="75" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="360" y="75" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="345" y="75" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="360" y="45" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="375" y="45" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="390" y="45" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="405" y="45" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="330" y="60" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="330" y="75" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="420" y="45" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="60" y="75" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="75" y="75" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="90" y="75" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="90" y="60" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="90" y="45" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="75" y="16" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="60" y="1" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="45" y="1" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="30" y="15" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="15" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="15" y="45" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="30" y="60" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="45" y="75" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="60" y="90" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="75" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="90" y="120" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="105" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="120" y="90" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="120" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="135" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="330" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="495" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="540" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="540" y="90" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="540" y="75" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="540" y="60" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="540" y="46" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="315" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="480" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="315" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="480" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="300" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="465" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="300" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="465" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="285" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="450" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="285" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="450" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="270" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="435" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="270" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="435" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="255" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="420" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="255" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="420" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="240" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="405" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="240" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="405" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="225" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="390" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="225" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="390" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="210" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="375" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="540" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="210" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="375" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="540" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="195" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="360" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="525" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="180" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="345" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="510" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="165" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="150" y="105" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="330" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="495" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="540" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="135" y="75" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="150" y="60" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="165" y="45" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="165" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="180" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="345" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="510" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="195" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="360" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="525" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="150" y="15" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="135" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="120" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="105" y="15" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="90" y="31" width="15" height="15" fill="#F9B8EB" fillOpacity="0.68" />
+                        <Rect x="60" y="16" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="45" y="16" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="30" y="30" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="60" y="30" width="15" height="15" fill="#FFDBF7" />
+                        <Rect x="45" y="45" width="15" height="15" fill="#FFDBF7" />
+                        <Rect x="45" y="30" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="75" y="31" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="75" y="45" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="75" y="60" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="60" y="60" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="60" y="45" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="45" y="60" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="30" y="45" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="90" y="105" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="105" y="90" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="90" y="90" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="75" y="90" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="120" y="75" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="120" y="60" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="120" y="45" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="105" y="30" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="105" y="45" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="105" y="60" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="105" y="75" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="120" y="30" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="120" y="15" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="135" y="15" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="135" y="30" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="135" y="45" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="135" y="60" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="150" y="30" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="150" y="45" width="15" height="15" fill="#FEDCF6" />
+                        <Rect x="75" y="120" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="60" y="105" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="90" y="16" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="45" y="90" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="30" y="75" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="15" y="60" width="15" height="15" fill="#F99ECF" />
+                        <Rect y="45" width="15" height="15" fill="#F99ECF" />
+                        <Rect y="31" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="15" y="16" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="30" y="1" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="105" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="180" y="46" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="180" y="60" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="165" y="60" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="165" y="75" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="165" y="90" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="405" y="60" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="390" y="75" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="375" y="90" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="360" y="90" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="345" y="90" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="330" y="90" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="315" y="90" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="300" y="90" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="285" y="90" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="270" y="90" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="255" y="90" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="240" y="90" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="225" y="90" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="210" y="90" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="195" y="90" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="180" y="90" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="150" y="75" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="150" y="90" width="15" height="15" fill="#F99ECF" />
+                        <Rect x="135" y="90" width="15" height="15" fill="#F99ECF" />
+                    </G>
+                </Defs>
+
+                {/* The faded background (opacity applied here) */}
+                <Use href="#loader-art" opacity="0.25" />
+
+                {/* The bright layer restricted by the animated mask */}
+                <Use href="#loader-art" clipPath="url(#loading-mask)" />
+            </Svg>
+        </View>
+    );
+}
+// === C:\Users\vvvve\OneDrive\robot\my-app\app\components\Score\Score.tsx ===
+import { useFonts } from 'expo-font';
+import React from 'react';
+import { Text, View } from 'react-native';
+
+interface ScoreProps {
+    score: number;
+}
+
+const Score: React.FC<ScoreProps> = ({ score }) => {
+    const [loaded] = useFonts({
+        PixelifySans: require('../../../assets/fonts/Pixelify_Sans/static/PixelifySans-Regular.ttf'),
+    });
+
+    if (!loaded) return null;
+
+    return (
+        <View style={{ position: 'absolute', top: 40, right: 0, zIndex: 10, transform: [{ rotate: '90deg' }], height: 40, }}>
+            <Text
+                style={{
+                    color: '#ff69b4',
+                    fontFamily: 'PixelifySans',
+                    fontSize: 20,
+                    letterSpacing: 2,
+                }}
+            >
+                Score: {score}
+            </Text>
+        </View>
+    );
+};
+
+export default Score;
+// === C:\Users\vvvve\OneDrive\robot\my-app\app\context\StartStreaming.tsx ===
+import { Buffer } from 'buffer';
+import React, { createContext, ReactNode, useRef, useState } from 'react';
+interface StreamContextType {
+    frameUrl: string;
+    connect: () => void;
+    disconnect: () => void;
+    error: boolean;
+    closed: boolean;
+    loading: boolean;
+}
+
+export const StreamContext = createContext<StreamContextType>('' as unknown as StreamContextType);
+
+export const StreamProvider = ({ children }: { children: ReactNode }) => {
+    const [frameUrl, setFrameUrl] = useState<string>('');
+    const socketRef = useRef<WebSocket | null>(null);
+    const [error, setError] = useState(false);
+    const [closed, setClosed] = useState(true);
+    const [loading, setLoading] = useState(true);
+    const connect = () => {
+        if (socketRef.current) return;
+
+
+        const ws = new WebSocket('ws://0.0.0.0:8888/video?device=ios&id=user123');
+        ws.binaryType = 'arraybuffer';
+        socketRef.current = ws;
+
+        ws.onopen = () => {
+            console.log("WebSocket connected");
+            setLoading(false);
+            setError(false);
+            setClosed(false);
+        };
+
+        ws.onmessage = (event) => {
+            setLoading(false);
+            console.log('message received', typeof event.data, event.data?.byteLength);
+            const base64data = Buffer.from(event.data).toString('base64');
+            setFrameUrl(`data:image/jpeg;base64,${base64data}`);
+        };
+
+        ws.onclose = () => {
+            console.log("WebSocket closed");
+            socketRef.current = null;
+            setClosed(true);
+            setLoading(false);
+        };
+
+        ws.onerror = () => {
+            console.error("WebSocket error");
+            socketRef.current = null;
+            setError(true);
+            setClosed(true);
+            setLoading(false);
+        };
+    };
+
+    const disconnect = () => {
+        if (socketRef.current) {
+            socketRef.current.close();
+            socketRef.current = null;
+            setFrameUrl('');
+        }
+    };
+    return (
+        <StreamContext.Provider value={{ frameUrl, connect, disconnect, error, closed, loading }}
+        >
+            {children}
+        </StreamContext.Provider>
+    );
+};
+// === C:\Users\vvvve\OneDrive\robot\my-app\app\hooks\usePressableImage.ts ===
+import { useMemo, useState } from "react";
+import { ImageSourcePropType, PressableProps } from "react-native";
+
+type UsePressableImageResult = {
+    imageSource: ImageSourcePropType;
+    pressableProps: Pick<PressableProps, "onPressIn" | "onPressOut">;
+    disablePressOut?: boolean
+};
+
+export function usePressableImage(
+    idleSource: ImageSourcePropType,
+    pressedSource: ImageSourcePropType,
+    disablePressOut: boolean = false
+): UsePressableImageResult {
+    const [isPressed, setIsPressed] = useState(false);
+
+    const pressableProps = useMemo(
+        () => disablePressOut
+            ? {
+                onPressIn: () => setIsPressed((prev) => !prev),
+            }
+            : {
+                onPressIn: () => setIsPressed(true),
+                onPressOut: () => setIsPressed(false),
+            },
+        [disablePressOut]
+    );
+
+    return {
+        imageSource: isPressed ? pressedSource : idleSource,
+        pressableProps,
+        disablePressOut,
+    };
+}
+// === C:\Users\vvvve\OneDrive\robot\my-app\app\Play\Play.styles.ts ===
+import { StyleSheet } from 'react-native';
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#FCEFF9",
+        gap: 20,
+        padding: 20,
+    },
+    imageFrame: {
+        width: 350,
+        height: 500,
+        borderRadius: 40,
+        borderWidth: 10,
+        borderColor: '#FFFFFF',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        overflow: 'hidden',
+        backgroundColor: '#000',
+        marginTop: 50,
+        position: 'relative',
+    },
+    mainImage: {
+        width: 700,
+        height: 500,
+        transform: [{ rotate: '-90deg' }],
+    },
+    pythonMessage: {
+        position: 'absolute',
+        bottom: 10,
+        left: 10,
+        right: 10,
+        color: '#fff',
+        fontSize: 14,
+        textAlign: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        padding: 8,
+        borderRadius: 10,
+    },
+    buttonContainer: {
+        position: 'relative',
+        height: 250,
+        width: 250,
+        transform: [{ rotate: '90deg' }],
+    },
+    buttonLeft: {
+        width: 100,
+        height: 80,
+        position: 'absolute',
+        left: 20,
+        top: 85,
+    },
+    stopButton: {
+        width: 100,
+        height: 80,
+        position: 'absolute',
+        left: 100,
+        top: 85,
+        transform: [{ rotate: '90deg' }],
+    },
+    buttonRight: {
+        width: 100,
+        height: 80,
+        position: 'absolute',
+        left: 180,
+        top: 85,
+    },
+    buttonForward: {
+        width: 100,
+        height: 80,
+        position: 'absolute',
+        left: 100,
+        top: 10,
+    },
+    buttonBackward: {
+        width: 100,
+        height: 80,
+        position: 'absolute',
+        left: 100,
+        top: 160,
+    },
+    buttonImage: {
+        width: '100%',
+        height: '100%',
+    },
+    smallButtonWrapper: {
+        marginRight: 30,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 30,
+        width: 100,
+        height: 160,
+    },
+    backButton: {
+        width: 100,
+        height: 80,
+        transform: [{ rotate: '90deg' }],
+    },
+    smartButton: {
+        width: 100,
+        height: 80,
+        transform: [{ rotate: '90deg' }],
+    },
+});
+
+export default styles;
+// === C:\Users\vvvve\OneDrive\robot\my-app\app\Play\Play.tsx ===
+import { Image } from 'expo-image';
+import { useRouter } from 'expo-router';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { Pressable, Text, View } from 'react-native';
+import HealthBar from '../components/HealthBar/Heathbar';
+import Score from '../components/Score/Score';
+import { StreamContext } from '../context/StartStreaming';
+import { usePressableImage } from '../hooks/usePressableImage';
+import styles from './Play.styles';
+
+export default function Play() {
+    const router = useRouter();
+    const { frameUrl } = useContext(StreamContext);
+    const [mode, setMode] = useState<"MANUAL_MODE" | "SMART_MODE">("MANUAL_MODE");
+
+    const backButtonImageIdle = require("../../assets/images/back_idle.svg");
+    const backButtonImagePressed = require("../../assets/images/back_pressed.svg");
+    const arrowLeftIdle = require("../../assets/images/arrow_left_idle.svg");
+    const arrowLeftPressed = require("../../assets/images/arrow_left_pressed.svg");
+    const arrowRightIdle = require("../../assets/images/arrow_right_idle.svg");
+    const arrowRightPressed = require("../../assets/images/arrow_right_pressed.svg");
+    const arrowForwardIdle = require("../../assets/images/arrow_forward_idle.svg");
+    const arrowForwardPressed = require("../../assets/images/arrow_forward_pressed.svg");
+    const arrowBackwardIdle = require("../../assets/images/arrow_backward_idle.svg");
+    const arrowBackwardPressed = require("../../assets/images/arrow_backward_pressed.svg");
+    const stopButtonImageIdle = require("../../assets/images/stop_idle.svg");
+    const stopButtonImagePressed = require("../../assets/images/stop_pressed.svg");
+    const smartButtonImageIdle = require("../../assets/images/smart_idle.svg");
+    const smartButtonImagePressed = require("../../assets/images/smart_pressed.svg");
+
+    const backButton = usePressableImage(backButtonImageIdle, backButtonImagePressed);
+    const leftButton = usePressableImage(arrowLeftIdle, arrowLeftPressed);
+    const rightButton = usePressableImage(arrowRightIdle, arrowRightPressed);
+    const forwardButton = usePressableImage(arrowForwardIdle, arrowForwardPressed);
+    const backwardButton = usePressableImage(arrowBackwardIdle, arrowBackwardPressed);
+    const stopButton = usePressableImage(stopButtonImageIdle, stopButtonImagePressed);
+    const smartButton = usePressableImage(smartButtonImageIdle, smartButtonImagePressed, true);
+    const ws = useRef<WebSocket | null>(null);
+    const [pythonMessage, setPythonMessage] = useState<string | null>(null);
+    const [score, setScore] = useState<Set<string>>(new Set());
+
+    useEffect(() => {
+        ws.current = new WebSocket('ws://0.0.0.0:8880/esp-32?role=client');
+
+        ws.current.onopen = () => console.log('WebSocket connected');
+        ws.current.onmessage = (event) => {
+            const payload = event.data?.toString?.() ?? String(event.data);
+            console.log('Received message:', payload);
+            setPythonMessage(payload);
+            setScore((prev) => {
+                const next = new Set(prev);
+                next.add(payload);
+                return next;
+            });
+            setTimeout(() => setPythonMessage(null), 3000); // Clear message after 3 seconds
+        };
+        ws.current.onclose = () => console.log('WebSocket closed');
+        ws.current.onerror = (error) => console.error('WebSocket Error:', error);
+
+        const wsCurrent = ws.current;
+        return () => {
+            wsCurrent.close();
+        };
+    }, []);
+    const sendCommand = (command: string) => {
+        if (ws.current && ws.current.readyState === WebSocket.OPEN) {
+            ws.current.send(command);
+            console.log(command)
+        }
+    }
+    return (
+        <View style={styles.container}>
+            <View style={styles.imageFrame}>
+                <Image
+                    source={{ uri: frameUrl }}
+                    style={styles.mainImage}
+                    contentFit="contain"
+
+                />
+                <Score score={score.size} />
+                <HealthBar />
+
+                {pythonMessage ? (
+                    <Text style={styles.pythonMessage}>Python: {pythonMessage}</Text>
+                ) : null}
+            </View>
+
+            <View style={{ flexDirection: 'row', gap: 5, alignItems: 'center' }}>
+                <View style={styles.buttonContainer}>
+                    <Pressable {...leftButton.pressableProps} style={styles.buttonLeft} onPress={() => sendCommand("GO_LEFT")} >
+                        <Image source={leftButton.imageSource} style={styles.buttonImage} contentFit="contain" />
+                    </Pressable>
+                    <Pressable {...stopButton.pressableProps} style={styles.stopButton} onPress={() => sendCommand("STOP")}>
+                        <Image source={stopButton.imageSource} style={styles.buttonImage} contentFit="contain" />
+                    </Pressable>
+                    <Pressable {...rightButton.pressableProps} style={styles.buttonRight} onPress={() => sendCommand("GO_RIGHT")}>
+                        <Image source={rightButton.imageSource} style={styles.buttonImage} contentFit="contain" />
+                    </Pressable>
+
+                    <Pressable {...forwardButton.pressableProps} style={styles.buttonForward} onPress={() => sendCommand("GO_FORWARD")}>
+                        <Image source={forwardButton.imageSource} style={styles.buttonImage} contentFit="contain" />
+                    </Pressable>
+
+                    <Pressable {...backwardButton.pressableProps} style={styles.buttonBackward} onPress={() => sendCommand("GO_BACKWARDS")}>
+                        <Image source={backwardButton.imageSource} style={styles.buttonImage} contentFit="contain" />
+                    </Pressable>
+                </View>
+                <View style={styles.smallButtonWrapper}>
+                    <Pressable {...backButton.pressableProps} style={styles.backButton} onPress={() => router.push('/PreviewCamera/PreviewCamera')}>
+                        <Image source={backButton.imageSource} style={styles.buttonImage} contentFit="contain" />
+                    </Pressable>
+                    <Pressable
+                        {...smartButton.pressableProps}
+                        style={styles.smartButton}
+                        onPress={() => {
+                            const newMode = mode === "MANUAL_MODE" ? "SMART_MODE" : "MANUAL_MODE";
+                            setMode(newMode);
+                            sendCommand(newMode);
+                        }}
+                    >
+                        <Image source={smartButton.imageSource} style={styles.buttonImage} contentFit="contain" />
+                    </Pressable>
+                </View>
+            </View>
+        </View>
+    );
+}
+// === C:\Users\vvvve\OneDrive\robot\my-app\app\PreviewCamera\PreviewCamera.styles.ts ===
+import { StyleSheet } from "react-native";
+export const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#FCEFF9",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 20,
+        padding: 20,
+    },
+    imageFrame: {
+        width: 320,
+        height: 400,
+        borderRadius: 40,
+        borderWidth: 10,
+        borderColor: '#FFFFFF',
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden',
+        backgroundColor: '#fff',
+
+    },
+    mainImage: {
+        width: 550,
+        height: '100%',
+        transform: [{ rotate: '180deg' }],
+    },
+    button: {
+        width: 200,
+        height: 60,
+    },
+    buttonImage: {
+        width: '100%',
+        height: '100%',
+    },
+    loadingContainer: {
+        position: 'absolute',
+        top: '50%'
+    },
+});
+// === C:\Users\vvvve\OneDrive\robot\my-app\app\PreviewCamera\PreviewCamera.tsx ===
+import { useFonts } from "expo-font";
+import { Image } from "expo-image";
+import { Href, useRouter } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
+import React, { useContext, useEffect, useRef } from "react";
+import { Pressable, View } from "react-native";
+import ErrorModal from "../components/ErrorModal/ErrorModal";
+import LoadingBar from "../components/LoadingBar/LoadingBar";
+import { StreamContext } from "../context/StartStreaming";
+import { usePressableImage } from "../hooks/usePressableImage";
+import { styles } from "./PreviewCamera.styles";
+
+export default function PreviewCamera() {
+    const { frameUrl, disconnect, connect, loading, error } = useContext(StreamContext);
+
+    const startButtonImageIdle = require("../../assets/images/start_idle.svg");
+    const stopButtonImageIdle = require("../../assets/images/back_idle.svg");
+
+    const startButtonImagePressed = startButtonImageIdle;
+    const stopButtonImagePressed = require("../../assets/images/back_pressed.svg");
+
+    const startButton = usePressableImage(startButtonImageIdle, startButtonImagePressed);
+    const stopButton = usePressableImage(stopButtonImageIdle, stopButtonImagePressed);
+
+    const router = useRouter();
+    const commandSocketRef = useRef<WebSocket | null>(null);
+
+    const sendRestartCommand = () => {
+        if (commandSocketRef.current && commandSocketRef.current.readyState === WebSocket.OPEN) {
+            commandSocketRef.current.send("RESTART");
+            return;
+        }
+
+        const cmdWs = new WebSocket('ws://0.0.0.0:8880/commands');
+        cmdWs.onopen = () => {
+            console.log("Command WebSocket connected");
+            cmdWs.send("RESTART");
+        };
+        cmdWs.onmessage = (event) => {
+            console.log("Command WS message:", event.data);
+        };
+        cmdWs.onclose = () => {
+            console.log("Command WebSocket closed");
+            if (commandSocketRef.current === cmdWs) {
+                commandSocketRef.current = null;
+            }
+        };
+        cmdWs.onerror = (error) => {
+            console.error("Command WebSocket Error:", error);
+            if (commandSocketRef.current === cmdWs) {
+                commandSocketRef.current = null;
+            }
+        };
+        commandSocketRef.current = cmdWs;
+    };
+
+    useEffect(() => {
+        return () => {
+            if (commandSocketRef.current) {
+                commandSocketRef.current.close();
+                commandSocketRef.current = null;
+            }
+        };
+    }, []);
+
+    const [loaded, errorFont] = useFonts({
+        PixelifySans: require("../../assets/fonts/Pixelify_Sans/static/PixelifySans-Regular.ttf"),
+    });
+
+    useEffect(() => {
+        if (loaded || error) {
+            SplashScreen.hideAsync();
+        }
+    }, [loaded, error]);
+
+    if (!loaded && !error) {
+        return null;
+    }
+
+    const handleGameStart = () => {
+        connect();
+        router.push('/Play/Play' as Href);
+    };
+
+    const stopGameStart = () => {
+        disconnect();
+        router.push('/StartConnect/StartConnect' as Href);
+    };
+    console.log(loading)
+    console.log("frame", frameUrl)
+    console.log('error', error)
+    return (
+        <View style={styles.container}>
+            <View style={styles.imageFrame}>
+                {error ? (
+                    <ErrorModal onReload={sendRestartCommand} />
+                ) : loading ? (
+                    <View style={styles.loadingContainer}>
+                        <LoadingBar />
+                    </View>
+                ) : (
+                    <Image
+                        source={{ uri: frameUrl }}
+                        style={styles.mainImage}
+                        contentFit="contain"
+                    />
+                )}
+            </View>
+
+            <Pressable {...startButton.pressableProps} onPress={handleGameStart} style={styles.button}
+            // disabled={loading || error}
+            >
+                <Image
+                    source={startButton.imageSource}
+                    style={styles.buttonImage}
+                    contentFit="contain"
+                />
+            </Pressable>
+
+            <Pressable {...stopButton.pressableProps} onPress={stopGameStart} style={styles.button}>
+                <Image
+                    source={stopButton.imageSource}
+                    style={styles.buttonImage}
+                    contentFit="contain"
+                />
+            </Pressable>
+        </View>
+    );
+};
+// === C:\Users\vvvve\OneDrive\robot\my-app\app\StartConnect\StartConnect.styles.ts ===
+import { StyleSheet } from "react-native";
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        paddingTop: 5,
+        paddingBottom: 5,
+        width: "100%",
+        height: "100%",
+        backgroundColor: "#FCEFF9",
+    },
+    appTitle: {
+        fontSize: 20,
+        lineHeight: 84,
+        fontWeight: "700",
+        color: "#F99ECF",
+        fontFamily: "PixelifySans",
+    },
+    connectionString: {
+        fontSize: 20,
+        lineHeight: 84,
+        fontWeight: "700",
+        color: "#f99eeb",
+        fontFamily: "PixelifySans",
+    },
+    robotImageWrapper: {
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    robotImage: {
+        width: 200,
+        height: 200,
+    },
+    titleWrapper: {
+        height: 100,
+        width: "100%",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: 0,
+    },
+    buttonContainer: {
+        gap: 5,
+        alignItems: "center",
+    },
+    connectImage: {
+        width: 200,
+        height: 80,
+    },
+    quitImage: {
+        width: 200,
+        height: 60,
+    },
+});
+
+export default styles;
+// === C:\Users\vvvve\OneDrive\robot\my-app\app\StartConnect\StartConnect.tsx ===
+import { useFonts } from "expo-font";
+import { Image } from "expo-image";
+import { Href, useRouter } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
+import { useContext, useEffect, useState } from "react";
+import { Pressable, Text, View } from "react-native";
+import { StreamContext } from "../context/StartStreaming";
+import { usePressableImage } from "../hooks/usePressableImage";
+import styles from "./StartConnect.styles";
+
+export default function StartConnect() {
+    const connectButtonImageIdle = require("../../assets/images/connect_idle.svg");
+    const quitButtonImageIdle = require("../../assets/images/quit_idle.svg");
+    const connectBuutonImagePressed = require("../../assets/images/connect_pressed.svg");
+    const quitButtonImagePressed = require("../../assets/images/quit_pressed.svg");
+    const robotHeadImage = require("../../assets/images/robot_head.png");
+
+    const [wifiConnecting, setWifiConnecting] = useState(false);
+
+    const router = useRouter();
+    const { connect, disconnect } = useContext(StreamContext);
+
+    const connectButton = usePressableImage(connectButtonImageIdle, connectBuutonImagePressed);
+    const quitButton = usePressableImage(quitButtonImageIdle, quitButtonImagePressed);
+
+    const handleStart = () => {
+        setWifiConnecting(true);
+        router.push('/PreviewCamera/PreviewCamera' as Href);
+        connect();
+    };
+
+    const handleQuit = () => {
+        setWifiConnecting(false);
+        disconnect();
+    };
+
+    const [loaded, error] = useFonts({
+        PixelifySans: require("../../assets/fonts/Pixelify_Sans/static/PixelifySans-Regular.ttf"),
+    });
+
+
+    useEffect(() => {
+        if (loaded || error) {
+            SplashScreen.hideAsync();
+        }
+    }, [loaded, error]);
+
+    if (!loaded && !error) {
+        return null;
+    }
+
+    return (
+        <View style={styles.container}>
+            <View style={styles.buttonContainer}>
+                <View style={styles.robotImageWrapper}>
+                    <Image style={styles.robotImage} source={robotHeadImage} contentFit="contain" />
+                </View>
+                <View style={styles.titleWrapper}>
+                    <Text style={styles.appTitle}>Terrain Smart Drone ESP32 CAM</Text>
+                </View>
+
+                <Pressable {...connectButton.pressableProps} onPress={handleStart}>
+                    <Image source={connectButton.imageSource} style={styles.connectImage} contentFit="contain" />
+                </Pressable>
+
+                <Pressable {...quitButton.pressableProps} onPress={handleQuit}>
+                    <Image source={quitButton.imageSource} style={styles.quitImage} contentFit="contain" />
+                </Pressable>
+            </View>
+        </View >
+    );
+};
+
+// === C:\Users\vvvve\OneDrive\robot\my-app\app\index.tsx ===
+
+import StartConnect from "./StartConnect/StartConnect";
+import React from "react";
+
+export default function Index() {
+  return (
+    <StartConnect />
+  );
+}
+// === C:\Users\vvvve\OneDrive\robot\my-app\app\_layout.tsx ===
+import { Slot } from "expo-router"; // or 'Stack' if you want a header
+import { StreamProvider } from "./context/StartStreaming";
+
+export default function RootLayout() {
+  return (
+    <StreamProvider>
+      {/* Slot is where your 'Index' and other pages will render */}
+      <Slot />
+    </StreamProvider>
+  )
+}
+// === C:\Users\vvvve\OneDrive\robot\my-app\image-processing\qrcode.py ===
+from pyzbar.pyzbar import decode
+import cv2
+import matplotlib.pyplot as plt
+
+# Load image
+image = cv2.imread("qrcode.png")
+
+image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
+codes = decode(image_rgb)
+for bc in codes:
+    x, y, w, h = bc.rect
+
+
+    cv2.rectangle(
+        image_rgb,
+        (x, y),
+        (x + w, y + h),
+        (255, 0, 0),  # Blue rectangle
+        3
+    )
+    barcode_text = bc.data.decode("utf-8")
+    barcode_type = bc.type
+
+    cv2.putText(
+        image_rgb,
+        barcode_text,
+        (x, y - 10),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        0.8,
+        (0, 255, 0),
+        2
+    )
+
+    print(f"QR Code revealed: {barcode_text} ({barcode_type})")
+
+plt.figure(figsize=(10, 10))
+plt.imshow(image_rgb)
+plt.axis("off")
+plt.title("QR Code Detection (Using Rectangle)")
+plt.show()
+// === C:\Users\vvvve\OneDrive\robot\my-app\server\FFMPEG\videoProcessor.ts ===
+// 
+import { spawn } from 'node:child_process';
+
+function startFFmpegProcess() {
+    const esp32Url = "http://192.168.3.148:81/stream";
+    const python = spawn('python', ['ffmpeg.py']);
+    python.on('spawn', () => console.log('Python запустився'));
+    python.on('error', (err) => console.error('Python помилка:', err));
+    python.stderr.on('data', (data) => console.error('Python stderr:', data.toString()));
+    python.stdout.on('data', (data) => console.log('Python stdout:', data.toString()));
+    const ffmpeg = spawn("ffmpeg", [
+        "-f", "mjpeg",
+        "-avoid_negative_ts", "make_zero", // Prevents frame drops due to network jitter
+        "-fflags", "nobuffer+discardcorrupt", // Disables internal buffering for raw speed
+        "-flags", "low_delay",            // Minimizes processing latency
+        "-i", esp32Url,
+
+        "-r", "15",                       // Locks the frame rate to a smooth 15fps
+        "-f", "mjpeg",
+        "-q:v", "2",                      // Sharp, even pixels (Values 2-3 are sweet spots)
+        "-"
+    ]);
+
+    ffmpeg.stdout.on("data", (data) => {
+        console.log("FFmpeg stdout:", data.length, "bytes");
+    })
+    ffmpeg.stdout.on("data", (data) => {
+        console.log("FFmpeg stdout:", data.length, "bytes");
+        python.stdin.write(data);
+    });
+
+
+    return ffmpeg;
+
+}
+
+
+
+export { startFFmpegProcess };
+
+// === C:\Users\vvvve\OneDrive\robot\my-app\server\FFMPEG\videostreamServer.ts ===
+import express from "express";
+import { createServer } from "node:http";
+
+const app = express();
+const server = createServer(app);
+
+const PORT = 8888;
+server.listen(PORT, "0.0.0.0", () => {
+    console.log(`HTTP/WS server listening on ${PORT}`);
+});
+
+export { app, server };
+
+// === C:\Users\vvvve\OneDrive\robot\my-app\server\FFMPEG\videostreamWebsocket.ts ===
+import { Buffer } from "node:buffer";
+import { parse } from "node:url";
+import WebSocket, { WebSocketServer } from "ws";
+import { startFFmpegProcess } from "./videoProcessor.ts";
+import { server } from "./videostreamServer.ts";
+import { IncomingMessage } from "node:http";
+
+declare module 'ws' {
+    interface WebSocket {
+        deviceId?: string;
+        deviceType?: string;
+    }
+}
+
+console.log("videostream module loaded");
+
+const wss = new WebSocketServer({ server, path: "/video" });
+
+wss.on("connection", (ws: WebSocket, req: IncomingMessage) => {
+    console.log("Client connected:", req.url);
+
+    if (!req.url) {
+        ws.close();
+        return;
+    }
+
+    const query = parse(req.url, true).query;
+    const deviceId = Array.isArray(query.id) ? query.id[0] : query.id;
+    const deviceType = Array.isArray(query.device) ? query.device[0] : query.device;
+
+    ws.deviceId = deviceId;
+    ws.deviceType = deviceType;
+
+    console.log(typeof ws.deviceId, typeof ws.deviceType);
+
+    let ffmpegProcess = startFFmpegProcess();
+    let buffer = Buffer.alloc(0);
+
+    ffmpegProcess.stdout.on("data", (chunk) => {
+        buffer = Buffer.concat([buffer, chunk]);
+
+        while (true) {
+            const start = buffer.indexOf(Buffer.from([0xff, 0xd8]));
+            const end = buffer.indexOf(Buffer.from([0xff, 0xd9]), start);
+
+            if (start !== -1 && end !== -1) {
+                const frame = buffer.slice(start, end + 2);
+                buffer = buffer.slice(end + 2);
+
+                const isIosConnected = [...wss.clients].some(
+                    (w) => w.deviceType === "ios" && w.deviceId === "user123"
+                );
+
+                if (ws.readyState === WebSocket.OPEN && isIosConnected) {
+
+                    ws.send(frame, (err) => {
+                        if (err) {
+                            console.error("Send error:", err);
+                        }
+                    });
+                }
+            } else {
+                break;
+            }
+        }
+    });
+
+    ws.on("close", () => {
+        console.log("Client disconnected");
+        if (ffmpegProcess) {
+            ffmpegProcess.kill();
+        }
+    });
+
+    ws.on("error", (err) => {
+        console.error("WS Error:", err);
+        if (ffmpegProcess) {
+            ffmpegProcess.kill();
+        }
+    });
+});
+// === C:\Users\vvvve\OneDrive\robot\my-app\server\commands.js ===
+import WebSocket, { WebSocketServer } from "ws";
+import { server } from "./commandServer.ts";
+
+const wss = new WebSocketServer({ server, path: "/esp-32" });
+
+
+
+const sendToRemoteServer = (command) => {
+    wss.clients.forEach((client) => {
+        if (client.readyState === WebSocket.OPEN && client.role === "esp-32") {
+            console.log(`Sending command to esp32: ${command}`);
+            client.send(command);
+        }
+    });
+};
+
+wss.on("connection", (ws, req) => {
+    const url = new URL(req.url || "", `ws://${req.headers.host}`);
+    ws.role = url.searchParams.get("role") || "client";
+
+    console.log(`New ws connection role=${ws.role}`);
+
+    ws.on("message", (data) => {
+        const message = data.toString().trim();
+        if (ws.role === "python") {
+            console.log(`Python message received: ${message}`);
+            wss.clients.forEach((client) => {
+                if (client.readyState === WebSocket.OPEN && client.role === "client") {
+                    console.log(`Sending Python data to client: ${message}`);
+                    client.send(message);
+                }
+            });
+            return;
+        }
+
+        const command = message;
+        switch (command) {
+            case "GO_LEFT":
+            case "GO_RIGHT":
+            case "GO_FORWARD":
+            case "GO_BACKWARDS":
+            case "SMART_MODE":
+            case "MANUAL_MODE":
+            case "STOP":
+                console.log(`${command} command received from client`);
+                sendToRemoteServer(command);
+                break;
+            default:
+                console.log(`Unknown command from client: ${command}`);
+        }
+    });
+
+    ws.on("close", () => {
+        console.log(`WebSocket disconnected role=${ws.role}`);
+    });
+
+    ws.on("error", (err) => {
+        console.error("WebSocket error:", err);
+    });
+});
+// === C:\Users\vvvve\OneDrive\robot\my-app\server\commandServer.ts ===
+import express from "express";
+import { createServer } from "node:http";
+
+const ip = "0.0.0.0";
+const port = 8880;
+
+const app = express();
+const server = createServer(app);
+server.listen(port, ip, () => {
+    console.log(`Server running on http://${ip}:${port} esp-32`);
+});
+export { server };
+
+// === C:\Users\vvvve\OneDrive\robot\my-app\server\ffmpeg.py ===
+import sys
+import threading
+
+import cv2
+import numpy as np
+import websocket
+from pyzbar.pyzbar import decode
+
+CMD_URL = "ws://0.0.0.0:8880/esp-32?role=python"
+
+# WebSocket підключення
+ws_client = None
+
+def connect_ws():
+    global ws_client
+    ws_client = websocket.WebSocketApp(
+        CMD_URL,
+        on_open=lambda ws: print("WebSocket підключено"),
+        on_error=lambda ws, err: print(f"WebSocket помилка: {err}"),
+        on_close=lambda ws, code, msg: print("WebSocket закрито"),
+    )
+    threading.Thread(target=ws_client.run_forever, daemon=True).start()
+
+def process_mjpeg_stream():
+    buffer = b''
+    print('start ffmpeg process', flush=True)
+    while True:
+        data = sys.stdin.buffer.read(4096)
+        if not data:
+            break
+
+        buffer += data
+
+        while True:
+            start = buffer.find(b'\xff\xd8')
+            if start == -1:
+                break
+                
+            if start > 0:
+                buffer = buffer[start:]
+                start = 0
+
+            end = buffer.find(b'\xff\xd9', start)
+            if end == -1:
+                break
+
+            frame_data = buffer[start:end + 2]
+            buffer = buffer[end + 2:]
+
+            nparr = np.frombuffer(frame_data, np.uint8)
+            image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+            if image is None:
+                continue
+
+            codes = decode(image)
+
+            for bc in codes:
+                x, y, w, h = bc.rect
+
+                cv2.rectangle(image, (x, y), (x + w, y + h), (255, 0, 0), 3)
+                
+                barcode_text = bc.data.decode('utf-8')
+                barcode_type = bc.type
+
+                cv2.putText(
+                    image,
+                    barcode_text,
+                    (x, y - 10),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.6,
+                    (0, 255, 0),
+                    2,
+                )
+
+                print(f'QR Code revealed: {barcode_text} ({barcode_type})', flush=True)
+
+                if ws_client and ws_client.sock:
+                    try:
+                        ws_client.send(barcode_text)
+                        print(f'WS sent: {barcode_text}', flush=True)
+                    except Exception as e:
+                        print(f"Помилка відправки: {e}", flush=True)
+
+            cv2.imshow('QR Code Stream', image)
+
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                cv2.destroyAllWindows()
+                return
+
+    cv2.destroyAllWindows()
+
+if __name__ == '__main__':
+    connect_ws()
+    process_mjpeg_stream()
+// === C:\Users\vvvve\OneDrive\robot\my-app\server\index.ts ===
+import "./FFMPEG/videoProcessor.ts";
+import "./FFMPEG/videostreamServer.ts";
+import "./FFMPEG/videostreamWebsocket.ts";
+import "./commandServer.ts";
+import "./commands.js";
+
+// === C:\Users\vvvve\OneDrive\robot\my-app\eslint.config.js ===
+// https://docs.expo.dev/guides/using-eslint/
+const { defineConfig } = require('eslint/config');
+const expoConfig = require('eslint-config-expo/flat');
+
+module.exports = defineConfig([
+  expoConfig,
+  {
+    ignores: ['dist/*'],
+  },
+]);
+// === C:\Users\vvvve\OneDrive\robot\my-app\expo-env.d.ts ===
+/// <reference types="expo/types" />
+
+// NOTE: This file should not be edited and should be in your git ignore

@@ -43,7 +43,7 @@
 
 const char *ssid = "Nika";
 const char *password = "09102004";
-const char *serverIp = "192.168.3.5";
+const char *serverIp = "0.0.0.0";
 const int port = 8880;
 bool autonomousMode = true;
 

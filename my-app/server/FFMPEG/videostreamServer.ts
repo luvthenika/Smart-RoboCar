@@ -5,7 +5,7 @@ const app = express();
 const server = createServer(app);
 
 const PORT = 8888;
-server.listen(PORT, "192.168.3.5", () => {
+server.listen(PORT, "0.0.0.0", () => {
     console.log(`HTTP/WS server listening on ${PORT}`);
 });
 
